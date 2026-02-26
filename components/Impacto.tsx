@@ -246,28 +246,6 @@ export default function Impacto() {
                 La eficiencia operativa se traduce directamente en ahorro medible para tu organización.
               </p>
             </div>
-            <div style={{
-              background: "rgba(124, 58, 237, 0.2)",
-              border: "1px solid rgba(124, 58, 237, 0.4)",
-              borderRadius: "12px",
-              padding: "20px 28px",
-              textAlign: "center",
-              minWidth: "140px",
-            }}>
-              <div style={{
-                fontSize: "36px",
-                fontWeight: 800,
-                background: "linear-gradient(135deg, #a855f7, #ec4899)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>
-                -40%
-              </div>
-              <div style={{ color: "rgba(196, 181, 253, 0.65)", fontSize: "12px", marginTop: "4px" }}>
-                costos promedio
-              </div>
-            </div>
           </div>
         </AnimatedSection>
       </div>

@@ -1,11 +1,22 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import Lottie from "lottie-react";
 import AnimatedSection from "./AnimatedSection";
 
 const WA_NUMBER = "543518131093";
 const WA_URL = `https://wa.me/${WA_NUMBER}`;
 
 export default function SobreDodilix() {
+  const [animationData, setAnimationData] = useState<object | null>(null);
+
+  useEffect(() => {
+    fetch("/multitasking-nobg.json")
+      .then((r) => r.json())
+      .then((data) => setAnimationData(data))
+      .catch(() => {});
+  }, []);
+
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
     document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
@@ -107,43 +118,16 @@ export default function SobreDodilix() {
           {/* Right: Values + CTA */}
           <div>
             <AnimatedSection delay={0.15}>
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "16px",
-                marginBottom: "32px",
-              }}>
-                {[
-                  { icon: "🎯", title: "Misión", desc: "Optimizar procesos críticos del sector asegurador." },
-                  { icon: "🚀", title: "Visión", desc: "Ser referentes en gestión inteligente de siniestros." },
-                  { icon: "💡", title: "Innovación", desc: "IA aplicada a procesos reales y de alto volumen." },
-                  { icon: "🤝", title: "Enfoque", desc: "Eficiencia, control y experiencia del asegurado." },
-                ].map((item, i) => (
-                  <div key={i} style={{
-                    background: "rgba(13, 13, 43, 0.7)",
-                    border: "1px solid rgba(124, 58, 237, 0.18)",
-                    borderRadius: "14px",
-                    padding: "20px",
-                    transition: "all 0.25s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(124, 58, 237, 0.4)";
-                    (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(124, 58, 237, 0.18)";
-                    (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-                  }}
-                  >
-                    <div style={{ fontSize: "26px", marginBottom: "10px" }}>{item.icon}</div>
-                    <div style={{ color: "white", fontWeight: 700, fontSize: "14px", marginBottom: "6px" }}>
-                      {item.title}
-                    </div>
-                    <div style={{ color: "rgba(196, 181, 253, 0.6)", fontSize: "13px", lineHeight: 1.5 }}>
-                      {item.desc}
-                    </div>
-                  </div>
-                ))}
+              <div style={{ marginBottom: "32px", display: "flex", justifyContent: "center" }}>
+                {animationData ? (
+                  <Lottie
+                    animationData={animationData}
+                    loop={true}
+                    style={{ width: "100%", maxWidth: "560px" }}
+                  />
+                ) : (
+                  <div style={{ width: "560px", height: "440px" }} />
+                )}
               </div>
             </AnimatedSection>
 
@@ -232,22 +216,8 @@ export default function SobreDodilix() {
             flexWrap: "wrap",
             gap: "16px",
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <div style={{
-                width: "36px",
-                height: "36px",
-                borderRadius: "8px",
-                background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2L4 7v10l8 5 8-5V7L12 2z" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
-                  <path d="M12 2v20M4 7l8 5 8-5" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <span style={{ color: "white", fontWeight: 700, fontSize: "18px" }}>Dodilix</span>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <span style={{ color: "white", fontWeight: 700, fontSize: "20px" }}>Dodilix</span>
             </div>
             <p style={{ color: "rgba(196, 181, 253, 0.4)", fontSize: "13px" }}>
               © {new Date().getFullYear()} Dodilix. Todos los derechos reservados.

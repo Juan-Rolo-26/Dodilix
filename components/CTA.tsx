@@ -1,23 +1,59 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import AnimatedSection from "./AnimatedSection";
 
 const WA_NUMBER = "543518131093";
 const WA_URL = `https://wa.me/${WA_NUMBER}`;
 
 export default function CTA() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current || !bgRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const progress = rect.top / window.innerHeight;
+      bgRef.current.style.transform = `translateY(${progress * 40}px)`;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
     document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section style={{
+    <section ref={sectionRef} style={{
       padding: "80px 24px",
       position: "relative",
       overflow: "hidden",
-      background: "linear-gradient(180deg, #060612 0%, #0e0530 50%, #060612 100%)",
     }}>
+      {/* Background image — parallax */}
+      <div ref={bgRef} style={{
+        position: "absolute",
+        top: "-60px",
+        left: 0,
+        right: 0,
+        bottom: "-60px",
+        backgroundImage: "url('/cta-bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        pointerEvents: "none",
+        willChange: "transform",
+      }} />
+      {/* Dark tint — enough to let card pop without hiding image */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        background: "rgba(4, 2, 16, 0.55)",
+        pointerEvents: "none",
+      }} />
       {/* Orbs */}
       <div style={{
         position: "absolute",
@@ -116,8 +152,8 @@ export default function CTA() {
 
             <AnimatedSection delay={0.3}>
               <p style={{
-                color: "rgba(196, 181, 253, 0.7)",
-                fontSize: "17px",
+                color: "rgba(220, 210, 255, 0.95)",
+                fontSize: "clamp(15px, 1.8vw, 17px)",
                 lineHeight: 1.65,
                 marginBottom: "44px",
                 maxWidth: "560px",
