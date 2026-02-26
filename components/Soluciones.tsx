@@ -153,30 +153,43 @@ export default function Soluciones() {
                 borderRadius: "20px 20px 0 0",
               }} />
 
-              <div style={{ display: "flex", gap: "16px", alignItems: "flex-start", marginBottom: "28px" }}>
-                <div style={{
-                  width: "48px",
-                  height: "48px",
-                  minWidth: "48px",
-                  borderRadius: "12px",
-                  background: "rgba(124, 58, 237, 0.15)",
-                  border: "1px solid rgba(124, 58, 237, 0.3)",
-                  display: "flex",
+              <div style={{ marginBottom: "28px" }}>
+                <span style={{
+                  display: "inline-flex",
                   alignItems: "center",
-                  justifyContent: "center",
+                  background: "rgba(124, 58, 237, 0.12)",
+                  border: "1px solid rgba(124, 58, 237, 0.35)",
+                  color: "#c4b5fd",
+                  padding: "7px 16px",
+                  borderRadius: "100px",
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  marginBottom: "16px",
                 }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="2" y="3" width="20" height="14" rx="2" stroke="#a855f7" strokeWidth="1.8"/>
-                    <path d="M8 21h8M12 17v4" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 style={{ color: "white", fontSize: "17px", fontWeight: 700, lineHeight: 1.3, marginBottom: "4px" }}>
+                  Pilar 01
+                </span>
+                <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
+                  <div style={{
+                    width: "48px",
+                    height: "48px",
+                    minWidth: "48px",
+                    borderRadius: "12px",
+                    background: "rgba(124, 58, 237, 0.15)",
+                    border: "1px solid rgba(124, 58, 237, 0.3)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <rect x="2" y="3" width="20" height="14" rx="2" stroke="#a855f7" strokeWidth="1.8"/>
+                      <path d="M8 21h8M12 17v4" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                  <h3 style={{ color: "white", fontSize: "17px", fontWeight: 700, lineHeight: 1.3 }}>
                     Plataforma integral de gestión de siniestros
                   </h3>
-                  <span style={{ color: "rgba(124, 58, 237, 0.8)", fontSize: "12px", fontWeight: 600 }}>
-                    Pilar 01
-                  </span>
                 </div>
               </div>
 
@@ -226,30 +239,43 @@ export default function Soluciones() {
                 borderRadius: "20px 20px 0 0",
               }} />
 
-              <div style={{ display: "flex", gap: "16px", alignItems: "flex-start", marginBottom: "28px" }}>
-                <div style={{
-                  width: "48px",
-                  height: "48px",
-                  minWidth: "48px",
-                  borderRadius: "12px",
-                  background: "rgba(236, 72, 153, 0.12)",
-                  border: "1px solid rgba(236, 72, 153, 0.25)",
-                  display: "flex",
+              <div style={{ marginBottom: "28px" }}>
+                <span style={{
+                  display: "inline-flex",
                   alignItems: "center",
-                  justifyContent: "center",
+                  background: "rgba(236, 72, 153, 0.1)",
+                  border: "1px solid rgba(236, 72, 153, 0.35)",
+                  color: "#f9a8d4",
+                  padding: "7px 16px",
+                  borderRadius: "100px",
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  marginBottom: "16px",
                 }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2a7 7 0 1 1 0 14 7 7 0 0 1 0-14z" stroke="#ec4899" strokeWidth="1.8"/>
-                    <path d="M9 12l2 2 4-4" stroke="#ec4899" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 style={{ color: "white", fontSize: "17px", fontWeight: 700, lineHeight: 1.3, marginBottom: "4px" }}>
+                  Pilar 02
+                </span>
+                <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
+                  <div style={{
+                    width: "48px",
+                    height: "48px",
+                    minWidth: "48px",
+                    borderRadius: "12px",
+                    background: "rgba(236, 72, 153, 0.12)",
+                    border: "1px solid rgba(236, 72, 153, 0.25)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 2a7 7 0 1 1 0 14 7 7 0 0 1 0-14z" stroke="#ec4899" strokeWidth="1.8"/>
+                      <path d="M9 12l2 2 4-4" stroke="#ec4899" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 style={{ color: "white", fontSize: "17px", fontWeight: 700, lineHeight: 1.3 }}>
                     Agentes de IA para análisis y automatización de siniestros
                   </h3>
-                  <span style={{ color: "rgba(236, 72, 153, 0.8)", fontSize: "12px", fontWeight: 600 }}>
-                    Pilar 02
-                  </span>
                 </div>
               </div>
 

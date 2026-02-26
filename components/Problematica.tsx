@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
 export default function Problematica() {
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef(null);
+  const cardInView = useInView(cardRef, { once: true, margin: "-80px" });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,14 +51,20 @@ export default function Problematica() {
 
       {/* "Cartel" card — compacto */}
       <div style={{ maxWidth: "680px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-        <div style={{
-          background: "rgba(7, 4, 26, 0.90)",
-          backdropFilter: "blur(14px)",
-          WebkitBackdropFilter: "blur(14px)",
-          border: "1px solid rgba(124, 58, 237, 0.28)",
-          borderRadius: "24px",
-          padding: "clamp(24px, 4vw, 44px)",
-        }}>
+        <motion.div
+          ref={cardRef}
+          initial={{ opacity: 0, y: 18 }}
+          animate={cardInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+          transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{
+            background: "rgba(7, 4, 26, 0.90)",
+            backdropFilter: "blur(14px)",
+            WebkitBackdropFilter: "blur(14px)",
+            border: "1px solid rgba(124, 58, 237, 0.28)",
+            borderRadius: "24px",
+            padding: "clamp(24px, 4vw, 44px)",
+          }}
+        >
 
           <AnimatedSection delay={0.1}>
             <span style={{
@@ -150,7 +159,7 @@ export default function Problematica() {
             </div>
           </AnimatedSection>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   );
