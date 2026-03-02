@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dodilix Web
 
-## Getting Started
+Landing de Dodilix construida con Next.js (App Router), preparada para despliegue estático en GitHub Pages.
 
-First, run the development server:
+## Desarrollo local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrí `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build de producción
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+El sitio exportado queda en `out/`.
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy en GitHub Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Este repo ya incluye workflow en [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Hacé push a la rama `main`.
+2. En GitHub, andá a `Settings > Pages`.
+3. En `Source`, seleccioná **GitHub Actions** (no `Deploy from a branch`).
+4. Esperá a que termine el workflow `Deploy to GitHub Pages` en `Actions`.
+5. El sitio quedará publicado en:
+   - `https://<usuario>.github.io/<repositorio>/`
 
-## Deploy on Vercel
+## Variables opcionales
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `BASE_PATH`: fuerza un base path manual (ejemplo: `BASE_PATH=/Dodilix`).
+- `NEXT_PUBLIC_DEMO_ENDPOINT`: endpoint externo para envío del formulario (si no se define, el formulario abre `mailto:`).
+- `NEXT_PUBLIC_CONTACT_EMAIL`: email destino para el modo `mailto` (por defecto `info@dodilix.com`).

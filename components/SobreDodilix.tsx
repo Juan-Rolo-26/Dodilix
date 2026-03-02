@@ -1,22 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Lottie from "lottie-react";
 import AnimatedSection from "./AnimatedSection";
+import chatbotAnimation from "@/public/live-chatbot.json";
 
 const WA_NUMBER = "543518131093";
 const WA_URL = `https://wa.me/${WA_NUMBER}`;
 
 export default function SobreDodilix() {
-  const [animationData, setAnimationData] = useState<object | null>(null);
-
-  useEffect(() => {
-    fetch("/live-chatbot.json")
-      .then((r) => r.json())
-      .then((data) => setAnimationData(data))
-      .catch(() => {});
-  }, []);
-
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
     document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
@@ -119,15 +110,11 @@ export default function SobreDodilix() {
           <div>
             <AnimatedSection delay={0.15}>
               <div style={{ marginBottom: "32px", display: "flex", justifyContent: "center" }}>
-                {animationData ? (
-                  <Lottie
-                    animationData={animationData}
-                    loop={true}
-                    style={{ width: "100%", maxWidth: "560px" }}
-                  />
-                ) : (
-                  <div style={{ width: "560px", height: "440px" }} />
-                )}
+                <Lottie
+                  animationData={chatbotAnimation}
+                  loop={true}
+                  style={{ width: "100%", maxWidth: "560px" }}
+                />
               </div>
             </AnimatedSection>
 

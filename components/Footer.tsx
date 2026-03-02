@@ -3,8 +3,6 @@
 const WA_NUMBER = "543518131093";
 const WA_URL = `https://wa.me/${WA_NUMBER}`;
 
-const navLinks: { label: string; action: () => void }[] = [];
-
 export default function Footer() {
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
