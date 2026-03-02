@@ -62,11 +62,11 @@ export default function Contacto() {
   };
 
   const inputStyle = {
-    background: "rgba(13, 13, 43, 0.8)",
-    border: "1px solid rgba(124, 58, 237, 0.25)",
+    background: "#f9fafb",
+    border: "1px solid #e5e7eb",
     borderRadius: "10px",
     padding: "14px 16px",
-    color: "white",
+    color: "#1f2937",
     fontSize: "15px",
     width: "100%",
     outline: "none",
@@ -79,21 +79,8 @@ export default function Contacto() {
       padding: "100px 24px",
       position: "relative",
       overflow: "hidden",
-      background: "linear-gradient(180deg, #060612 0%, #0b051e 60%, #060612 100%)",
+      background: "#ffffff",
     }}>
-      {/* Orb */}
-      <div style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        width: "600px",
-        height: "600px",
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%)",
-        filter: "blur(60px)",
-        transform: "translate(-50%, -50%)",
-        pointerEvents: "none",
-      }} />
 
       <div style={{ maxWidth: "760px", margin: "0 auto", position: "relative", zIndex: 1 }}>
         {/* Header */}
@@ -103,9 +90,9 @@ export default function Contacto() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              background: "rgba(124, 58, 237, 0.12)",
-              border: "1px solid rgba(124, 58, 237, 0.35)",
-              color: "#c4b5fd",
+              background: "rgba(124, 58, 237, 0.08)",
+              border: "1px solid rgba(124, 58, 237, 0.3)",
+              color: "#7c3aed",
               padding: "7px 16px",
               borderRadius: "100px",
               fontSize: "11px",
@@ -125,6 +112,7 @@ export default function Contacto() {
               letterSpacing: "-0.5px",
               lineHeight: 1.15,
               marginBottom: "16px",
+              color: "#0f0f1a",
             }}>
               Solicitar{" "}
               <span style={{
@@ -140,7 +128,7 @@ export default function Contacto() {
 
           <AnimatedSection delay={0.25}>
             <p style={{
-              color: "rgba(196, 181, 253, 0.7)",
+              color: "#6b7280",
               fontSize: "16px",
               maxWidth: "480px",
               margin: "0 auto",
@@ -153,22 +141,14 @@ export default function Contacto() {
         {/* Form Card */}
         <AnimatedSection delay={0.2}>
           <div style={{
-            background: "rgba(13, 13, 43, 0.85)",
-            border: "1px solid rgba(124, 58, 237, 0.2)",
+            background: "#ffffff",
+            border: "1px solid #e5e7eb",
             borderRadius: "24px",
             padding: "48px",
             position: "relative",
             overflow: "hidden",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
           }}>
-            {/* Top border glow */}
-            <div style={{
-              position: "absolute",
-              top: "-1px",
-              left: "10%",
-              right: "10%",
-              height: "1px",
-              background: "linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.9), rgba(236, 72, 153, 0.5), transparent)",
-            }} />
 
             {success ? (
               <div style={{ textAlign: "center", padding: "48px 0" }}>
@@ -187,10 +167,10 @@ export default function Contacto() {
                     <path d="M20 6L9 17l-5-5" stroke="#a855f7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                <h3 style={{ color: "white", fontSize: "22px", fontWeight: 700, marginBottom: "12px" }}>
+                <h3 style={{ color: "#0f0f1a", fontSize: "22px", fontWeight: 700, marginBottom: "12px" }}>
                   ¡Gracias por contactarnos!
                 </h3>
-                <p style={{ color: "rgba(196, 181, 253, 0.75)", fontSize: "16px", lineHeight: 1.6 }}>
+                <p style={{ color: "#4b5563", fontSize: "16px", lineHeight: 1.6 }}>
                   Recibimos tu solicitud. Nos pondremos en contacto pronto para coordinar
                   la demo personalizada.
                 </p>
@@ -199,7 +179,7 @@ export default function Contacto() {
                   style={{
                     marginTop: "28px",
                     background: "transparent",
-                    color: "#c4b5fd",
+                    color: "#7c3aed",
                     padding: "10px 24px",
                     borderRadius: "8px",
                     fontSize: "14px",
@@ -224,7 +204,7 @@ export default function Contacto() {
                   <div>
                     <label style={{
                       display: "block",
-                      color: "rgba(196, 181, 253, 0.8)",
+                      color: "#374151",
                       fontSize: "13px",
                       fontWeight: 600,
                       marginBottom: "8px",
@@ -254,7 +234,7 @@ export default function Contacto() {
                   <div>
                     <label style={{
                       display: "block",
-                      color: "rgba(196, 181, 253, 0.8)",
+                      color: "#374151",
                       fontSize: "13px",
                       fontWeight: 600,
                       marginBottom: "8px",
@@ -283,7 +263,7 @@ export default function Contacto() {
                   <div>
                     <label style={{
                       display: "block",
-                      color: "rgba(196, 181, 253, 0.8)",
+                      color: "#374151",
                       fontSize: "13px",
                       fontWeight: 600,
                       marginBottom: "8px",
@@ -312,7 +292,7 @@ export default function Contacto() {
                   <div>
                     <label style={{
                       display: "block",
-                      color: "rgba(196, 181, 253, 0.8)",
+                      color: "#374151",
                       fontSize: "13px",
                       fontWeight: 600,
                       marginBottom: "8px",
@@ -341,9 +321,9 @@ export default function Contacto() {
                         e.target.style.boxShadow = "none";
                       }}
                     >
-                      <option value="" style={{ background: "#0d0d2b" }}>Seleccioná tu país</option>
+                      <option value="" style={{ background: "#ffffff", color: "#1f2937" }}>Seleccioná tu país</option>
                       {countries.map((c) => (
-                        <option key={c} value={c} style={{ background: "#0d0d2b" }}>{c}</option>
+                        <option key={c} value={c} style={{ background: "#ffffff", color: "#1f2937" }}>{c}</option>
                       ))}
                     </select>
                   </div>
@@ -353,12 +333,12 @@ export default function Contacto() {
                 <div style={{ marginBottom: "28px" }}>
                   <label style={{
                     display: "block",
-                    color: "rgba(196, 181, 253, 0.8)",
+                    color: "#374151",
                     fontSize: "13px",
                     fontWeight: 600,
                     marginBottom: "8px",
                   }}>
-                    Comentario <span style={{ color: "rgba(196, 181, 253, 0.4)", fontWeight: 400 }}>(opcional)</span>
+                    Comentario <span style={{ color: "#9ca3af", fontWeight: 400 }}>(opcional)</span>
                   </label>
                   <textarea
                     name="comentario"
@@ -458,7 +438,7 @@ export default function Contacto() {
 
                 <p style={{
                   textAlign: "center",
-                  color: "rgba(196, 181, 253, 0.45)",
+                  color: "#9ca3af",
                   fontSize: "12px",
                   marginTop: "16px",
                 }}>

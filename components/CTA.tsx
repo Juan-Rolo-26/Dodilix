@@ -1,26 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import AnimatedSection from "./AnimatedSection";
 
 const WA_NUMBER = "543518131093";
 const WA_URL = `https://wa.me/${WA_NUMBER}`;
 
 export default function CTA() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current || !bgRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const progress = rect.top / window.innerHeight;
-      bgRef.current.style.transform = `translateY(${progress * 40}px)`;
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -28,32 +13,12 @@ export default function CTA() {
   };
 
   return (
-    <section ref={sectionRef} style={{
+    <section style={{
       padding: "80px 24px",
       position: "relative",
       overflow: "hidden",
+      background: "#060612",
     }}>
-      {/* Background image — parallax */}
-      <div ref={bgRef} style={{
-        position: "absolute",
-        top: "-60px",
-        left: 0,
-        right: 0,
-        bottom: "-60px",
-        backgroundImage: "url('/cta-bg.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        pointerEvents: "none",
-        willChange: "transform",
-      }} />
-      {/* Dark tint — enough to let card pop without hiding image */}
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        background: "rgba(4, 2, 16, 0.55)",
-        pointerEvents: "none",
-      }} />
       {/* Orbs */}
       <div style={{
         position: "absolute",

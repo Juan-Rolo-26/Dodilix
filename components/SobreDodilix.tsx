@@ -11,7 +11,7 @@ export default function SobreDodilix() {
   const [animationData, setAnimationData] = useState<object | null>(null);
 
   useEffect(() => {
-    fetch("/multitasking-nobg.json")
+    fetch("/live-chatbot.json")
       .then((r) => r.json())
       .then((data) => setAnimationData(data))
       .catch(() => {});
@@ -204,26 +204,6 @@ export default function SobreDodilix() {
           </div>
         </div>
 
-        {/* Footer */}
-        <AnimatedSection delay={0.3}>
-          <div style={{
-            marginTop: "80px",
-            paddingTop: "32px",
-            borderTop: "1px solid rgba(124, 58, 237, 0.12)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "16px",
-          }}>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <span style={{ color: "white", fontWeight: 700, fontSize: "20px" }}>Dodilix</span>
-            </div>
-            <p style={{ color: "rgba(196, 181, 253, 0.4)", fontSize: "13px" }}>
-              © {new Date().getFullYear()} Dodilix. Todos los derechos reservados.
-            </p>
-          </div>
-        </AnimatedSection>
       </div>
     </section>
   );
