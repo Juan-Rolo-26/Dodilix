@@ -16,6 +16,8 @@ const bulletItems = [
 ];
 
 export default function Problematica() {
+  const problematicaImageSrc = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/problematica-nueva.jpg`;
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const sectionInView = useInView(sectionRef, { once: true, margin: "-120px" });
 
@@ -91,7 +93,7 @@ export default function Problematica() {
               boxShadow: "0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(124, 58, 237, 0.15)",
             }}>
               <motion.img
-                src="/problematica-nueva.jpg"
+                src={problematicaImageSrc}
                 alt="Equipo de trabajo"
                 initial={{ opacity: 0, scale: 1.04 }}
                 whileInView={{ opacity: 1, scale: 1 }}
