@@ -122,6 +122,15 @@ export default function Soluciones() {
                 gestión de siniestros
               </span>
             </h2>
+            <p style={{
+              color: "rgba(196, 181, 253, 0.75)",
+              fontSize: "16px",
+              lineHeight: 1.65,
+              maxWidth: "760px",
+              margin: "0 auto",
+            }}>
+              Cada pilar funciona de manera independiente o en conjunto, permitiendo una implementación progresiva adaptada a tu organización.
+            </p>
           </AnimatedSection>
         </div>
 

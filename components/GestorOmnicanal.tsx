@@ -128,22 +128,6 @@ export default function GestorOmnicanal() {
               </div>
             </AnimatedSection>
 
-            <AnimatedSection delay={0.45}>
-              <div style={{
-                background: "rgba(124, 58, 237, 0.06)",
-                border: "1px solid rgba(124, 58, 237, 0.2)",
-                borderRadius: "14px",
-                padding: "20px 24px",
-              }}>
-                <div style={{ color: "#c4b5fd", fontSize: "13px", fontWeight: 600, marginBottom: "6px" }}>
-                  Una solución flexible y escalable
-                </div>
-                <p style={{ color: "rgba(196, 181, 253, 0.65)", fontSize: "13px", lineHeight: 1.55 }}>
-                  Cada pilar funciona de manera independiente o en conjunto, permitiendo
-                  una implementación progresiva adaptada a tu organización.
-                </p>
-              </div>
-            </AnimatedSection>
           </div>
 
           {/* Right: Visual chat mockup */}

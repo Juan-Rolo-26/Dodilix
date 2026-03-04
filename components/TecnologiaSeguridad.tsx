@@ -1,6 +1,7 @@
 "use client";
 
 import AnimatedSection from "./AnimatedSection";
+import TextType from "./TextType";
 
 const integrations = [
   {
@@ -228,26 +229,28 @@ export default function TecnologiaSeguridad() {
               </span>
             </AnimatedSection>
 
-            <AnimatedSection delay={0.15}>
-              <h2 style={{
-                fontSize: "clamp(26px, 4vw, 44px)",
-                fontWeight: 800,
-                letterSpacing: "-0.5px",
-                lineHeight: 1.15,
-                marginBottom: "16px",
+            <h2 style={{
+              fontSize: "clamp(26px, 4vw, 44px)",
+              fontWeight: 800,
+              letterSpacing: "-0.5px",
+              lineHeight: 1.15,
+              marginBottom: "16px",
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              alignItems: "baseline",
+            }}>
+              <TextType as="span" text="Seguridad y " startOnVisible loop={false} typingSpeed={36} initialDelay={120} showCursor={false} />
+              <span style={{
+                background: "linear-gradient(135deg, #22c55e, #16a34a)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
               }}>
-                Seguridad y{" "}
-                <span style={{
-                  background: "linear-gradient(135deg, #22c55e, #16a34a)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}>
-                  trazabilidad
-                </span>{" "}
-                en cada acción
-              </h2>
-            </AnimatedSection>
+                <TextType as="span" text="trazabilidad" startOnVisible loop={false} typingSpeed={36} initialDelay={560} showCursor={false} />
+              </span>
+              <TextType as="span" text=" en cada acción" startOnVisible loop={false} typingSpeed={36} initialDelay={980} showCursor={false} />
+            </h2>
 
             <AnimatedSection delay={0.25}>
               <p style={{

@@ -1,6 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+
+const LiquidEther = dynamic(() => import("./LiquidEther"), { ssr: false });
 
 const WA_NUMBER = "543518131093";
 const WA_URL = `https://wa.me/${WA_NUMBER}`;
@@ -21,80 +24,30 @@ export default function Hero() {
       position: "relative",
       overflow: "hidden",
       padding: "120px 24px 80px",
-      background: "linear-gradient(180deg, #060612 0%, #0d0730 50%, #060612 100%)",
+      background: "#060612",
     }}>
-      {/* Background orbs */}
-      <div style={{
-        position: "absolute",
-        top: "20%",
-        left: "10%",
-        width: "500px",
-        height: "500px",
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, transparent 70%)",
-        filter: "blur(40px)",
-        pointerEvents: "none",
-      }} />
-      <div style={{
-        position: "absolute",
-        top: "30%",
-        right: "10%",
-        width: "400px",
-        height: "400px",
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%)",
-        filter: "blur(40px)",
-        pointerEvents: "none",
-      }} />
-      <div style={{
-        position: "absolute",
-        bottom: "20%",
-        left: "40%",
-        width: "300px",
-        height: "300px",
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, transparent 70%)",
-        filter: "blur(40px)",
-        pointerEvents: "none",
-      }} />
+      {/* LiquidEther background */}
+      <LiquidEther
+        colors={["#7c3aed", "#a855f7", "#ec4899", "#6d28d9"]}
+        mouseForce={25}
+        cursorSize={120}
+        resolution={0.5}
+        autoDemo={true}
+        autoSpeed={0.4}
+        autoIntensity={2.0}
+        autoResumeDelay={1200}
+      />
 
-      {/* Grid background */}
+      {/* Dark overlay for text legibility */}
       <div style={{
         position: "absolute",
         inset: 0,
-        backgroundImage: "linear-gradient(rgba(124, 58, 237, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(124, 58, 237, 0.04) 1px, transparent 1px)",
-        backgroundSize: "60px 60px",
+        background: "linear-gradient(180deg, rgba(6,6,18,0.45) 0%, rgba(6,6,18,0.3) 50%, rgba(6,6,18,0.55) 100%)",
         pointerEvents: "none",
       }} />
 
       {/* Content */}
       <div style={{ position: "relative", zIndex: 2, textAlign: "center", maxWidth: "860px" }}>
-        {/* Tag */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          style={{ marginBottom: "24px" }}
-        >
-          <span style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            background: "rgba(124, 58, 237, 0.12)",
-            border: "1px solid rgba(124, 58, 237, 0.35)",
-            color: "#c4b5fd",
-            padding: "7px 16px",
-            borderRadius: "100px",
-            fontSize: "12px",
-            fontWeight: 600,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-          }}>
-            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#a855f7", display: "inline-block" }} />
-            Tecnología para aseguradoras
-          </span>
-        </motion.div>
-
         {/* Main headline */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -121,7 +74,7 @@ export default function Hero() {
         </motion.h1>
 
         {/* Subtitle */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.35 }}
@@ -129,15 +82,18 @@ export default function Hero() {
             fontSize: "clamp(16px, 2vw, 20px)",
             color: "rgba(196, 181, 253, 0.8)",
             lineHeight: 1.6,
-            marginBottom: "44px",
             maxWidth: "680px",
             margin: "0 auto 44px",
           }}
         >
-          Optimizamos el ciclo completo del siniestro mediante plataforma especializada,
-          inteligencia artificial y comunicación omnicanal. Reducí tiempos, costos y errores
-          en tu operación.
-        </motion.p>
+          <p style={{ marginBottom: "14px" }}>
+            Optimizamos el ciclo completo del siniestro o parte del proceso mediante nuestra
+            plataforma especializada con inteligencia artificial y comunicación omnicanal.
+          </p>
+          <p>
+            Reducí tiempos, costos y problemas en tu operación.
+          </p>
+        </motion.div>
 
         {/* CTA Buttons */}
         <motion.div
@@ -215,34 +171,6 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Trust badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.65 }}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "32px",
-            flexWrap: "wrap",
-          }}
-        >
-          {["Implementación progresiva", "Integración simple", "Pensado para operación real"].map((item, i) => (
-            <div key={i} style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              color: "rgba(196, 181, 253, 0.65)",
-              fontSize: "13px",
-              fontWeight: 500,
-            }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path d="M20 6L9 17l-5-5" stroke="#a855f7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              {item}
-            </div>
-          ))}
-        </motion.div>
       </div>
 
       {/* Scroll indicator */}

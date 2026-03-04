@@ -1,117 +1,120 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
-const cards = [
-  { icon: "⏱", text: "Tiempos operativos elevados", color: "#ec4899" },
-  { icon: "🔀", text: "Procesos fragmentados y manuales", color: "#f59e0b" },
-  { icon: "📋", text: "Falta de trazabilidad", color: "#ef4444" },
-  { icon: "💰", text: "Costos operativos altos", color: "#8b5cf6" },
+const PARAGRAPH = "paragraph";
+const BULLETS = "bullets";
+
+const bulletItems = [
+  "Tareas manuales enfrentando altos volumenes de casos",
+  "Información dispersa en múltiples sistemas y herramientas",
+  "Análisis inconsistente por falta de criterios unificados",
+  "Comunicación desorganizada con asegurados y peritos",
+  "Dificultad para escalar operaciones sin aumentar costos",
 ];
 
 export default function Problematica() {
-  const cardsRef = useRef(null);
-  const cardsInView = useInView(cardsRef, { once: true, margin: "-60px" });
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionInView = useInView(sectionRef, { once: true, margin: "-120px" });
+
+  const [hasStarted, setHasStarted] = useState(false);
+  const [activeContent, setActiveContent] = useState<"paragraph" | "bullets">(PARAGRAPH);
+  const [contentOpacity, setContentOpacity] = useState(1);
+
+  // Start the loop the first time the section enters the viewport
+  useEffect(() => {
+    if (sectionInView && !hasStarted) {
+      setHasStarted(true);
+    }
+  }, [sectionInView, hasStarted]);
+
+  // Cycle: 9s visible → 1s fade out → switch → 1s fade in → repeat
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    const displayTimer = setTimeout(() => {
+      // Fade out (1s)
+      setContentOpacity(0);
+
+      const switchTimer = setTimeout(() => {
+        // Switch content and fade in (1s)
+        setActiveContent((prev) => (prev === PARAGRAPH ? BULLETS : PARAGRAPH));
+        setContentOpacity(1);
+      }, 1000);
+
+      return () => clearTimeout(switchTimer);
+    }, 9000);
+
+    return () => clearTimeout(displayTimer);
+  }, [hasStarted, activeContent]);
 
   return (
-    <section style={{
-      padding: "100px 24px",
-      position: "relative",
-      overflow: "hidden",
-      background: "#ffffff",
-    }}>
+    <section
+      ref={sectionRef}
+      style={{
+        padding: "100px 24px",
+        position: "relative",
+        overflow: "hidden",
+        background: "linear-gradient(180deg, #020208 0%, #04041a 50%, #020208 100%)",
+      }}
+    >
+      {/* Background orb */}
+      <div style={{
+        position: "absolute",
+        top: "30%",
+        right: "-80px",
+        width: "450px",
+        height: "450px",
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, transparent 70%)",
+        filter: "blur(60px)",
+        pointerEvents: "none",
+      }} />
+
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: "60px",
+          gridTemplateColumns: "0.82fr 1.18fr",
+          gap: "48px",
           alignItems: "center",
         }}>
 
-          {/* Left: Cards */}
-          <div>
+          {/* Left: image */}
+          <AnimatedSection direction="left" delay={0.05}>
             <div style={{
-              background: "rgba(6, 6, 18, 0.55)",
-              border: "1px solid rgba(124, 58, 237, 0.2)",
-              borderRadius: "24px",
-              padding: "48px",
-              position: "relative",
+              borderRadius: "20px",
               overflow: "hidden",
-              minHeight: "380px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
+              position: "relative",
+              aspectRatio: "4/5",
+              boxShadow: "0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(124, 58, 237, 0.15)",
             }}>
-              {/* Decorative grid */}
+              <motion.img
+                src="/problematica-nueva.jpg"
+                alt="Equipo de trabajo"
+                initial={{ opacity: 0, scale: 1.04 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 1.0, ease: "easeOut" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+              {/* Subtle dark gradient overlay on the image */}
               <div style={{
                 position: "absolute",
                 inset: 0,
-                backgroundImage: "linear-gradient(rgba(124, 58, 237, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(124, 58, 237, 0.06) 1px, transparent 1px)",
-                backgroundSize: "30px 30px",
+                background: "linear-gradient(180deg, transparent 50%, rgba(6,6,18,0.4) 100%)",
                 pointerEvents: "none",
               }} />
-
-              <div ref={cardsRef} style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: "280px" }}>
-                {cards.map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ scaleX: 0.08, opacity: 0 }}
-                    animate={cardsInView
-                      ? { scaleX: 1, opacity: 1 }
-                      : { scaleX: 0.08, opacity: 0 }
-                    }
-                    whileHover={{
-                      scale: 1.04,
-                      boxShadow: `0 0 22px ${item.color}55, 0 4px 14px rgba(0,0,0,0.35)`,
-                      borderColor: `${item.color}88`,
-                      transition: { duration: 0.18, ease: "easeOut" },
-                    }}
-                    transition={{
-                      scaleX: {
-                        delay: i * 0.11,
-                        duration: 0.52,
-                        ease: [0.34, 1.56, 0.64, 1],
-                      },
-                      opacity: {
-                        delay: i * 0.11,
-                        duration: 0.3,
-                      },
-                    }}
-                    style={{
-                      transformOrigin: "left center",
-                      background: "rgba(6, 6, 18, 0.7)",
-                      border: `1px solid ${item.color}33`,
-                      borderRadius: "12px",
-                      padding: "14px 18px",
-                      marginBottom: "12px",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "14px",
-                      backdropFilter: "blur(8px)",
-                      cursor: "default",
-                    }}
-                  >
-                    <span style={{ fontSize: "22px" }}>{item.icon}</span>
-                    <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "14px", fontWeight: 500 }}>
-                      {item.text}
-                    </span>
-                    <div style={{
-                      marginLeft: "auto",
-                      width: "8px",
-                      height: "8px",
-                      borderRadius: "50%",
-                      background: item.color,
-                    }} />
-                  </motion.div>
-                ))}
-              </div>
             </div>
-          </div>
+          </AnimatedSection>
 
-          {/* Right: Content */}
+          {/* Right: content */}
           <div>
             <AnimatedSection delay={0.1}>
               <span style={{
@@ -119,8 +122,8 @@ export default function Problematica() {
                 alignItems: "center",
                 gap: "8px",
                 background: "rgba(236, 72, 153, 0.1)",
-                border: "1px solid rgba(236, 72, 153, 0.3)",
-                color: "#be185d",
+                border: "1px solid rgba(236, 72, 153, 0.35)",
+                color: "#f9a8d4",
                 padding: "6px 14px",
                 borderRadius: "100px",
                 fontSize: "11px",
@@ -135,12 +138,12 @@ export default function Problematica() {
 
             <AnimatedSection delay={0.2}>
               <h2 style={{
-                fontSize: "clamp(26px, 4vw, 42px)",
+                fontSize: "clamp(26px, 3.5vw, 44px)",
                 fontWeight: 800,
                 lineHeight: 1.15,
                 letterSpacing: "-0.5px",
-                marginBottom: "24px",
-                color: "#0f0f1a",
+                marginBottom: "32px",
+                color: "white",
               }}>
                 La gestión de siniestros se volvió un proceso{" "}
                 <span style={{
@@ -154,49 +157,68 @@ export default function Problematica() {
               </h2>
             </AnimatedSection>
 
+            {/* Rotating content area */}
             <AnimatedSection delay={0.3}>
-              <p style={{
-                color: "#4b5563",
-                fontSize: "16px",
-                lineHeight: 1.7,
-                marginBottom: "28px",
-              }}>
-                Las aseguradoras enfrentan operaciones fragmentadas, herramientas desconectadas
-                y procesos manuales que generan demoras, inconsistencias y pérdida de control.
-                El volumen creciente de casos amplifica cada ineficiencia.
-              </p>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.4}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-                {[
-                  "Información dispersa en múltiples sistemas y herramientas",
-                  "Análisis inconsistente por falta de criterios unificados",
-                  "Comunicación desorganizada con asegurados y peritos",
-                  "Dificultad para escalar operaciones sin aumentar costos",
-                ].map((item, i) => (
-                  <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
-                    <div style={{
-                      width: "22px",
-                      height: "22px",
-                      minWidth: "22px",
-                      borderRadius: "50%",
-                      background: "rgba(236, 72, 153, 0.15)",
-                      border: "1px solid rgba(236, 72, 153, 0.4)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginTop: "2px",
+              <div style={{ minHeight: "200px", position: "relative" }}>
+                <div
+                  style={{
+                    opacity: contentOpacity,
+                    transition: "opacity 1s ease",
+                  }}
+                >
+                  {activeContent === PARAGRAPH ? (
+                    <p style={{
+                      color: "rgba(196, 181, 253, 0.85)",
+                      fontSize: "clamp(19px, 1.8vw, 22px)",
+                      lineHeight: 1.8,
                     }}>
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
-                        <path d="M18 6L6 18M6 6l12 12" stroke="#ec4899" strokeWidth="2.5" strokeLinecap="round"/>
-                      </svg>
+                      Las aseguradoras enfrentan operaciones fragmentadas, herramientas desconectadas
+                      y procesos manuales que generan demoras, inconsistencias y pérdida de control.
+                      El volumen creciente de casos amplifica cada ineficiencia.
+                    </p>
+                  ) : (
+                    <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+                      {bulletItems.map((item, i) => (
+                        <motion.div
+                          key={`${activeContent}-${i}`}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{
+                            duration: 0.35,
+                            delay: 0.06 + i * 0.08,
+                            ease: [0.2, 0.65, 0.25, 0.95],
+                          }}
+                          style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}
+                        >
+                          <div style={{
+                            width: "24px",
+                            height: "24px",
+                            minWidth: "24px",
+                            borderRadius: "50%",
+                            background: "rgba(236, 72, 153, 0.12)",
+                            border: "1px solid rgba(236, 72, 153, 0.4)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            marginTop: "2px",
+                          }}>
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                              <path d="M18 6L6 18M6 6l12 12" stroke="#ec4899" strokeWidth="2.5" strokeLinecap="round"/>
+                            </svg>
+                          </div>
+                          <span style={{
+                            color: "rgba(196, 181, 253, 0.85)",
+                            fontSize: "clamp(18px, 1.7vw, 21px)",
+                            lineHeight: 1.6,
+                            whiteSpace: "nowrap",
+                          }}>
+                            {item}
+                          </span>
+                        </motion.div>
+                      ))}
                     </div>
-                    <span style={{ color: "#374151", fontSize: "15px", lineHeight: 1.5 }}>
-                      {item}
-                    </span>
-                  </div>
-                ))}
+                  )}
+                </div>
               </div>
             </AnimatedSection>
           </div>

@@ -9,7 +9,6 @@ import Soluciones from "@/components/Soluciones";
 import GestorOmnicanal from "@/components/GestorOmnicanal";
 import TecnologiaSeguridad from "@/components/TecnologiaSeguridad";
 import Contacto from "@/components/Contacto";
-import SobreDodilix from "@/components/SobreDodilix";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -26,7 +25,6 @@ export default function Home() {
       <GestorOmnicanal />
       <TecnologiaSeguridad />
       <Contacto />
-      <SobreDodilix />
       <Footer />
     </main>
   );

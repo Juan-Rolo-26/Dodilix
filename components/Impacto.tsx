@@ -1,6 +1,6 @@
 "use client";
 
-import AnimatedSection from "./AnimatedSection";
+import { motion } from "framer-motion";
 
 const impactItems = [
   {
@@ -66,17 +66,25 @@ const impactItems = [
     title: "Escalabilidad sin aumentar estructura",
     desc: "Crecé en volumen de siniestros sin necesidad de sumar proporcionalmente personal.",
   },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+    title: "Reducción de costos operativos",
+    desc: "Menos reprocesos, menor necesidad de personal adicional y optimización de recursos en toda la operación.",
+  },
 ];
 
 export default function Impacto() {
   return (
     <section style={{
-      padding: "100px 24px",
+      padding: "0 24px 100px",
       position: "relative",
       overflow: "hidden",
       background: "linear-gradient(180deg, #060612 0%, #080420 60%, #060612 100%)",
     }}>
-      {/* Orbs */}
       <div style={{
         position: "absolute",
         top: "50%",
@@ -91,163 +99,107 @@ export default function Impacto() {
       }} />
 
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "64px" }}>
-          <AnimatedSection delay={0.05}>
-            <span style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              background: "rgba(124, 58, 237, 0.12)",
-              border: "1px solid rgba(124, 58, 237, 0.35)",
-              color: "#c4b5fd",
-              padding: "7px 16px",
-              borderRadius: "100px",
-              fontSize: "11px",
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              marginBottom: "20px",
-            }}>
-              Resultados concretos
-            </span>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.15}>
-            <h2 style={{
-              fontSize: "clamp(28px, 4.5vw, 48px)",
-              fontWeight: 800,
-              letterSpacing: "-0.5px",
-              lineHeight: 1.15,
-              marginBottom: "20px",
-            }}>
-              Impacto directo en la{" "}
-              <span style={{
-                background: "linear-gradient(135deg, #a855f7, #ec4899)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>
-                operación
-              </span>
-            </h2>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.25}>
-            <p style={{
-              color: "rgba(196, 181, 253, 0.7)",
-              fontSize: "17px",
-              maxWidth: "580px",
-              margin: "0 auto",
-            }}>
-              Dodilix genera mejoras medibles desde el primer mes de implementación.
-            </p>
-          </AnimatedSection>
-        </div>
-
-        {/* Grid 2x3 */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           gap: "20px",
-          marginBottom: "20px",
         }}>
           {impactItems.map((item, i) => (
-            <AnimatedSection key={i} delay={0.1 + i * 0.08}>
-              <div style={{
-                background: "rgba(13, 13, 43, 0.7)",
-                border: "1px solid rgba(124, 58, 237, 0.2)",
+            <motion.article
+              key={i}
+              initial={{ opacity: 0, y: 24, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{
+                duration: 0.48,
+                delay: 0.04 + i * 0.06,
+                ease: [0.2, 0.65, 0.25, 0.95],
+              }}
+              whileHover={{
+                y: -6,
+                scale: 1.01,
+                borderColor: "rgba(124, 58, 237, 0.5)",
+                boxShadow: "0 16px 40px rgba(124, 58, 237, 0.24)",
+                backgroundColor: "rgba(16, 16, 54, 0.92)",
+              }}
+              style={{
+                gridColumn: i === impactItems.length - 1 ? "1 / -1" : "auto",
+                background: "rgba(13, 13, 43, 0.78)",
+                border: "1px solid rgba(124, 58, 237, 0.25)",
                 borderRadius: "16px",
                 padding: "28px",
-                height: "100%",
-                transition: "all 0.3s ease",
-                cursor: "default",
+                minHeight: i === impactItems.length - 1 ? "170px" : "220px",
+                textAlign: i === impactItems.length - 1 ? "center" : "left",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: i === impactItems.length - 1 ? "center" : "flex-start",
+                justifyContent: "center",
+                transition: "border-color 0.2s ease, box-shadow 0.2s ease",
               }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(124, 58, 237, 0.5)";
-                (e.currentTarget as HTMLDivElement).style.background = "rgba(13, 13, 43, 0.9)";
-                (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 12px 40px rgba(124, 58, 237, 0.2)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(124, 58, 237, 0.2)";
-                (e.currentTarget as HTMLDivElement).style.background = "rgba(13, 13, 43, 0.7)";
-                (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-              }}
-              >
-                <div style={{
-                  width: "52px",
-                  height: "52px",
-                  borderRadius: "12px",
-                  background: "rgba(124, 58, 237, 0.12)",
-                  border: "1px solid rgba(124, 58, 237, 0.25)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginBottom: "20px",
-                }}>
-                  {item.icon}
-                </div>
-                <h3 style={{
-                  color: "white",
-                  fontSize: "16px",
-                  fontWeight: 700,
-                  marginBottom: "10px",
-                  lineHeight: 1.3,
-                }}>
-                  {item.title}
-                </h3>
-                <p style={{
-                  color: "rgba(196, 181, 253, 0.65)",
-                  fontSize: "14px",
-                  lineHeight: 1.6,
-                }}>
-                  {item.desc}
-                </p>
+            >
+              <div style={{
+                width: "52px",
+                height: "52px",
+                borderRadius: "12px",
+                background: "rgba(124, 58, 237, 0.12)",
+                border: "1px solid rgba(124, 58, 237, 0.25)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "20px",
+              }}>
+                {item.icon}
               </div>
-            </AnimatedSection>
+              <h3 style={{
+                color: "white",
+                fontSize: "16px",
+                fontWeight: 700,
+                marginBottom: "10px",
+                lineHeight: 1.35,
+              }}>
+                {item.title}
+              </h3>
+              <p style={{
+                color: "rgba(196, 181, 253, 0.7)",
+                fontSize: "14px",
+                lineHeight: 1.65,
+              }}>
+                {item.desc}
+              </p>
+            </motion.article>
           ))}
         </div>
 
-        {/* Full-width card: cost reduction */}
-        <AnimatedSection delay={0.5}>
-          <div style={{
-            background: "linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(236, 72, 153, 0.08))",
-            border: "1px solid rgba(124, 58, 237, 0.3)",
-            borderRadius: "16px",
-            padding: "32px 36px",
-            display: "flex",
-            alignItems: "center",
-            gap: "28px",
-            flexWrap: "wrap",
-          }}>
-            <div style={{
-              width: "60px",
-              height: "60px",
-              minWidth: "60px",
-              borderRadius: "14px",
-              background: "rgba(124, 58, 237, 0.2)",
-              border: "1px solid rgba(124, 58, 237, 0.4)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "32px",
+          flexWrap: "wrap",
+          paddingTop: "34px",
+        }}>
+          {["Implementación progresiva", "Integración simple", "Pensado para operación real"].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.7 }}
+              transition={{ duration: 0.35, delay: 0.1 + i * 0.08 }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                color: "rgba(196, 181, 253, 0.65)",
+                fontSize: "13px",
+                fontWeight: 500,
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M20 6L9 17l-5-5" stroke="#a855f7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </div>
-            <div style={{ flex: 1 }}>
-              <h3 style={{ color: "white", fontSize: "18px", fontWeight: 700, marginBottom: "8px" }}>
-                Reducción de costos operativos
-              </h3>
-              <p style={{ color: "rgba(196, 181, 253, 0.7)", fontSize: "15px", lineHeight: 1.6 }}>
-                Menos reprocesos, menor necesidad de personal adicional y optimización de recursos.
-                La eficiencia operativa se traduce directamente en ahorro medible para tu organización.
-              </p>
-            </div>
-          </div>
-        </AnimatedSection>
+              {item}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

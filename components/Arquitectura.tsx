@@ -1,53 +1,58 @@
 "use client";
 
 import AnimatedSection from "./AnimatedSection";
+import BlurText from "./BlurText";
+
+const GREEN = "#34d399";
+const GREEN_LIGHT = "rgba(52, 211, 153, 0.1)";
+const GREEN_BORDER = "rgba(52, 211, 153, 0.28)";
 
 const pillars = [
   {
     number: "01",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="3" width="20" height="14" rx="2" stroke="#a855f7" strokeWidth="1.8"/>
-        <path d="M8 21h8M12 17v4" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round"/>
-        <path d="M6 7h12M6 11h8" stroke="#a855f7" strokeWidth="1.8" strokeLinecap="round"/>
+        <rect x="2" y="3" width="20" height="14" rx="2" stroke={GREEN} strokeWidth="1.8"/>
+        <path d="M8 21h8M12 17v4" stroke={GREEN} strokeWidth="1.8" strokeLinecap="round"/>
+        <path d="M6 7h12M6 11h8" stroke={GREEN} strokeWidth="1.8" strokeLinecap="round"/>
       </svg>
     ),
     title: "Plataforma integral de gestión de siniestros",
     desc: "Gestión completa y trazable del ciclo de vida del siniestro. Desde la apertura hasta la liquidación final.",
-    color: "#7c3aed",
-    colorLight: "rgba(124, 58, 237, 0.15)",
-    colorBorder: "rgba(124, 58, 237, 0.3)",
+    color: GREEN,
+    colorLight: GREEN_LIGHT,
+    colorBorder: GREEN_BORDER,
   },
   {
     number: "02",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2a7 7 0 1 1 0 14 7 7 0 0 1 0-14z" stroke="#ec4899" strokeWidth="1.8"/>
-        <path d="M9 12l2 2 4-4" stroke="#ec4899" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M12 16v6M8.5 19l3.5 3 3.5-3" stroke="#ec4899" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 2a7 7 0 1 1 0 14 7 7 0 0 1 0-14z" stroke={GREEN} strokeWidth="1.8"/>
+        <path d="M9 12l2 2 4-4" stroke={GREEN} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 16v6M8.5 19l3.5 3 3.5-3" stroke={GREEN} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     title: "Agentes de IA para análisis y automatización",
     desc: "Análisis inteligente, generación de liquidaciones e informes. IA aplicada a cada etapa del proceso.",
-    color: "#ec4899",
-    colorLight: "rgba(236, 72, 153, 0.12)",
-    colorBorder: "rgba(236, 72, 153, 0.3)",
+    color: GREEN,
+    colorLight: GREEN_LIGHT,
+    colorBorder: GREEN_BORDER,
   },
   {
     number: "03",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#3b82f6" strokeWidth="1.8" strokeLinejoin="round"/>
-        <circle cx="9" cy="10" r="1" fill="#3b82f6"/>
-        <circle cx="12" cy="10" r="1" fill="#3b82f6"/>
-        <circle cx="15" cy="10" r="1" fill="#3b82f6"/>
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke={GREEN} strokeWidth="1.8" strokeLinejoin="round"/>
+        <circle cx="9" cy="10" r="1" fill={GREEN}/>
+        <circle cx="12" cy="10" r="1" fill={GREEN}/>
+        <circle cx="15" cy="10" r="1" fill={GREEN}/>
       </svg>
     ),
     title: "Gestor de conversaciones omnicanal",
     desc: "Comunicación fluida, trazable e integrada al siniestro. WhatsApp, email y más en un solo lugar.",
-    color: "#3b82f6",
-    colorLight: "rgba(59, 130, 246, 0.12)",
-    colorBorder: "rgba(59, 130, 246, 0.3)",
+    color: GREEN,
+    colorLight: GREEN_LIGHT,
+    colorBorder: GREEN_BORDER,
   },
 ];
 
@@ -110,25 +115,33 @@ export default function Arquitectura() {
             </span>
           </AnimatedSection>
 
-          <AnimatedSection delay={0.15}>
-            <h2 style={{
-              fontSize: "clamp(28px, 4.5vw, 48px)",
-              fontWeight: 800,
-              letterSpacing: "-0.5px",
-              lineHeight: 1.15,
-              marginBottom: "20px",
-            }}>
-              Una solución integral,{" "}
-              <span style={{
-                background: "linear-gradient(135deg, #a855f7, #ec4899)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>
-                tres pilares
-              </span>
-            </h2>
-          </AnimatedSection>
+          <h2 style={{
+            fontSize: "clamp(28px, 4.5vw, 48px)",
+            fontWeight: 800,
+            letterSpacing: "-0.5px",
+            lineHeight: 1.15,
+            marginBottom: "20px",
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            alignItems: "baseline",
+            columnGap: "0.28em",
+          }}>
+            <BlurText
+              text="Una solución integral,"
+              animateBy="words"
+              delay={120}
+              direction="top"
+              className="arquitectura-title-main"
+            />
+            <BlurText
+              text="tres pilares"
+              animateBy="words"
+              delay={120}
+              direction="top"
+              className="arquitectura-title-accent"
+            />
+          </h2>
 
           <AnimatedSection delay={0.25}>
             <p style={{
@@ -173,21 +186,21 @@ export default function Arquitectura() {
               {/* Venn circles */}
               <svg width="360" height="340" viewBox="0 0 360 340" fill="none" style={{ position: "relative", zIndex: 2 }}>
                 {/* Circle 1 - top: Platform */}
-                <circle cx="180" cy="110" r="110" fill="rgba(124, 58, 237, 0.12)" stroke="rgba(124, 58, 237, 0.4)" strokeWidth="1.5"/>
+                <circle cx="180" cy="110" r="110" fill="rgba(52, 211, 153, 0.08)" stroke="rgba(52, 211, 153, 0.35)" strokeWidth="1.5"/>
                 {/* Circle 2 - bottom left: AI */}
-                <circle cx="120" cy="230" r="110" fill="rgba(236, 72, 153, 0.10)" stroke="rgba(236, 72, 153, 0.35)" strokeWidth="1.5"/>
+                <circle cx="120" cy="230" r="110" fill="rgba(52, 211, 153, 0.08)" stroke="rgba(52, 211, 153, 0.35)" strokeWidth="1.5"/>
                 {/* Circle 3 - bottom right: Omnichannel */}
-                <circle cx="240" cy="230" r="110" fill="rgba(59, 130, 246, 0.10)" stroke="rgba(59, 130, 246, 0.35)" strokeWidth="1.5"/>
+                <circle cx="240" cy="230" r="110" fill="rgba(52, 211, 153, 0.08)" stroke="rgba(52, 211, 153, 0.35)" strokeWidth="1.5"/>
 
-                {/* Labels */}
-                <text x="180" y="55" textAnchor="middle" fill="rgba(196, 181, 253, 0.9)" fontSize="12" fontWeight="600">Plataforma</text>
-                <text x="180" y="71" textAnchor="middle" fill="rgba(196, 181, 253, 0.9)" fontSize="12" fontWeight="600">de Gestión</text>
+                {/* Labels - positioned inside each circle's unique region */}
+                <text x="180" y="48" textAnchor="middle" fill="rgba(167, 243, 208, 0.9)" fontSize="12" fontWeight="600">Plataforma</text>
+                <text x="180" y="64" textAnchor="middle" fill="rgba(167, 243, 208, 0.9)" fontSize="12" fontWeight="600">de Gestión</text>
 
-                <text x="62" y="290" textAnchor="middle" fill="rgba(249, 168, 212, 0.9)" fontSize="12" fontWeight="600">Agentes</text>
-                <text x="62" y="306" textAnchor="middle" fill="rgba(249, 168, 212, 0.9)" fontSize="12" fontWeight="600">de IA</text>
+                <text x="100" y="296" textAnchor="middle" fill="rgba(167, 243, 208, 0.9)" fontSize="12" fontWeight="600">Agentes</text>
+                <text x="100" y="312" textAnchor="middle" fill="rgba(167, 243, 208, 0.9)" fontSize="12" fontWeight="600">de IA</text>
 
-                <text x="298" y="290" textAnchor="middle" fill="rgba(147, 197, 253, 0.9)" fontSize="12" fontWeight="600">Gestor</text>
-                <text x="298" y="306" textAnchor="middle" fill="rgba(147, 197, 253, 0.9)" fontSize="12" fontWeight="600">Omnicanal</text>
+                <text x="265" y="296" textAnchor="middle" fill="rgba(167, 243, 208, 0.9)" fontSize="12" fontWeight="600">Gestor</text>
+                <text x="265" y="312" textAnchor="middle" fill="rgba(167, 243, 208, 0.9)" fontSize="12" fontWeight="600">Omnicanal</text>
 
                 {/* Center label */}
                 <text x="180" y="185" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Dodilix</text>

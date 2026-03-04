@@ -91,7 +91,7 @@ export default function Contacto() {
 
   const inputStyle = {
     background: "#f9fafb",
-    border: "1px solid #e5e7eb",
+    border: "1.5px solid #cfd5df",
     borderRadius: "10px",
     padding: "14px 16px",
     color: "#1f2937",
@@ -170,7 +170,7 @@ export default function Contacto() {
         <AnimatedSection delay={0.2}>
           <div style={{
             background: "#ffffff",
-            border: "1px solid #e5e7eb",
+            border: "1.5px solid #d1d5db",
             borderRadius: "24px",
             padding: "48px",
             position: "relative",
@@ -253,7 +253,7 @@ export default function Contacto() {
                         e.target.style.boxShadow = "0 0 0 3px rgba(124, 58, 237, 0.12)";
                       }}
                       onBlur={(e) => {
-                        e.target.style.borderColor = "rgba(124, 58, 237, 0.25)";
+                        e.target.style.borderColor = "#cfd5df";
                         e.target.style.boxShadow = "none";
                       }}
                     />
@@ -282,7 +282,7 @@ export default function Contacto() {
                         e.target.style.boxShadow = "0 0 0 3px rgba(124, 58, 237, 0.12)";
                       }}
                       onBlur={(e) => {
-                        e.target.style.borderColor = "rgba(124, 58, 237, 0.25)";
+                        e.target.style.borderColor = "#cfd5df";
                         e.target.style.boxShadow = "none";
                       }}
                     />
@@ -311,7 +311,7 @@ export default function Contacto() {
                         e.target.style.boxShadow = "0 0 0 3px rgba(124, 58, 237, 0.12)";
                       }}
                       onBlur={(e) => {
-                        e.target.style.borderColor = "rgba(124, 58, 237, 0.25)";
+                        e.target.style.borderColor = "#cfd5df";
                         e.target.style.boxShadow = "none";
                       }}
                     />
@@ -346,7 +346,7 @@ export default function Contacto() {
                         e.target.style.boxShadow = "0 0 0 3px rgba(124, 58, 237, 0.12)";
                       }}
                       onBlur={(e) => {
-                        e.target.style.borderColor = "rgba(124, 58, 237, 0.25)";
+                        e.target.style.borderColor = "#cfd5df";
                         e.target.style.boxShadow = "none";
                       }}
                     >
@@ -385,7 +385,7 @@ export default function Contacto() {
                       e.target.style.boxShadow = "0 0 0 3px rgba(124, 58, 237, 0.12)";
                     }}
                     onBlur={(e) => {
-                      e.target.style.borderColor = "rgba(124, 58, 237, 0.25)";
+                      e.target.style.borderColor = "#cfd5df";
                       e.target.style.boxShadow = "none";
                     }}
                   />
