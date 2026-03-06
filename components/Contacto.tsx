@@ -1,14 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import AnimatedSection from "./AnimatedSection";
 
 const countries = [
   "Argentina", "México", "Chile", "Colombia", "Perú", "Uruguay", "Bolivia",
   "Paraguay", "Ecuador", "Venezuela", "Brasil", "España", "Otro",
 ];
-const DEMO_ENDPOINT = process.env.NEXT_PUBLIC_DEMO_ENDPOINT;
-const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@dodilix.com";
+
+const EMAILJS_SERVICE_ID =
+  process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_q6rbj52";
+const EMAILJS_TEMPLATE_COMPANY =
+  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_COMPANY || "template_mb2bmdr";
+const EMAILJS_TEMPLATE_CLIENT =
+  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_CLIENT || "template_5d24apk";
+const EMAILJS_PUBLIC_KEY =
+  process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "XXft8T6Gj5z4JhQIO";
 
 export default function Contacto() {
   const [form, setForm] = useState({
@@ -27,21 +35,6 @@ export default function Contacto() {
     if (error) setError("");
   };
 
-  const openPrefilledEmail = () => {
-    const subject = encodeURIComponent(`Solicitud de demo - ${form.empresa}`);
-    const bodyLines = [
-      "Nueva solicitud de demo desde la web de Dodilix:",
-      "",
-      `Nombre y apellido: ${form.nombre}`,
-      `Empresa: ${form.empresa}`,
-      `Email: ${form.email}`,
-      `Pais: ${form.pais}`,
-      `Comentario: ${form.comentario || "Sin comentario"}`,
-    ];
-    const body = encodeURIComponent(bodyLines.join("\n"));
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -58,27 +51,39 @@ export default function Contacto() {
     setError("");
 
     try {
-      if (DEMO_ENDPOINT) {
-        const res = await fetch(DEMO_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
-        });
+      const fecha = new Date().toISOString();
+      const baseTemplateParams = {
+        nombre: form.nombre,
+        empresa: form.empresa,
+        email: form.email,
+        pais: form.pais,
+        comentario: form.comentario || "Sin comentario",
+        fecha,
+      };
 
-        if (!res.ok) {
-          let message = "Ocurrió un error. Intentá nuevamente.";
-          try {
-            const data = await res.json() as { message?: string };
-            message = data.message || message;
-          } catch {
-            // Sin body JSON de error, usamos mensaje genérico.
-          }
-          setError(message);
-          return;
-        }
-      } else {
-        openPrefilledEmail();
-      }
+      // Email 1: notificación a la empresa
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_COMPANY,
+        {
+          ...baseTemplateParams,
+          to_email: "pablomiglierini@dodilix.com",
+          reply_to: form.email,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      // Email 2: confirmación al cliente
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_CLIENT,
+        {
+          ...baseTemplateParams,
+          to_email: form.email,
+          reply_to: "pablomiglierini@dodilix.com",
+        },
+        EMAILJS_PUBLIC_KEY
+      );
 
       setSuccess(true);
       setForm({ nombre: "", empresa: "", email: "", pais: "", comentario: "" });
@@ -199,9 +204,7 @@ export default function Contacto() {
                   ¡Gracias por contactarnos!
                 </h3>
                 <p style={{ color: "#4b5563", fontSize: "16px", lineHeight: 1.6 }}>
-                  {DEMO_ENDPOINT
-                    ? "Recibimos tu solicitud. Nos pondremos en contacto pronto para coordinar la demo personalizada."
-                    : `Se abrió tu app de correo para enviar la solicitud a ${CONTACT_EMAIL}. Si no se abrió automáticamente, escribinos a ${CONTACT_EMAIL}.`}
+                  Recibimos tu solicitud. Nos pondremos en contacto pronto para coordinar la demo personalizada.
                 </p>
                 <button
                   onClick={() => setSuccess(false)}
@@ -465,22 +468,11 @@ export default function Contacto() {
                   )}
                 </button>
 
-                {!DEMO_ENDPOINT && (
-                  <p style={{
-                    textAlign: "center",
-                    color: "#6b7280",
-                    fontSize: "12px",
-                    marginTop: "14px",
-                  }}>
-                    Al enviar, abrimos tu app de correo con los datos del formulario.
-                  </p>
-                )}
-
                 <p style={{
                   textAlign: "center",
                   color: "#9ca3af",
                   fontSize: "12px",
-                  marginTop: DEMO_ENDPOINT ? "16px" : "8px",
+                  marginTop: "16px",
                 }}>
                   Tus datos son confidenciales y no serán compartidos con terceros.
                 </p>

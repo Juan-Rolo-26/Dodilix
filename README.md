@@ -33,5 +33,7 @@ Este repo ya incluye workflow en [.github/workflows/deploy-pages.yml](.github/wo
 ## Variables opcionales
 
 - `BASE_PATH`: fuerza un base path manual (ejemplo: `BASE_PATH=/Dodilix`).
-- `NEXT_PUBLIC_DEMO_ENDPOINT`: endpoint externo para envío del formulario (si no se define, el formulario abre `mailto:`).
-- `NEXT_PUBLIC_CONTACT_EMAIL`: email destino para el modo `mailto` (por defecto `info@dodilix.com`).
+- `NEXT_PUBLIC_EMAILJS_SERVICE_ID`: service ID de EmailJS para el formulario de contacto.
+- `NEXT_PUBLIC_EMAILJS_TEMPLATE_COMPANY`: template ID para notificar el lead a la empresa.
+- `NEXT_PUBLIC_EMAILJS_TEMPLATE_CLIENT`: template ID para enviar confirmación al cliente.
+- `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`: public key de EmailJS.
