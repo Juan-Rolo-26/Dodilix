@@ -10,7 +10,7 @@ const countries = [
 ];
 
 const EMAILJS_SERVICE_ID = "service_xwum72j";
-const EMAILJS_TEMPLATE_COMPANY = "template_mb2bmdr";
+const EMAILJS_TEMPLATE_COMPANY = "ujugd8q";
 const EMAILJS_TEMPLATE_CLIENT = "template_5d24apk";
 const EMAILJS_PUBLIC_KEY = "XXft8T6Gj5z4JhQIO";
 
@@ -57,19 +57,7 @@ export default function Contacto() {
         fecha,
       };
 
-      // Email 1: notificación a la empresa
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_COMPANY,
-        {
-          ...baseTemplateParams,
-          to_email: "pablomiglierini@dodilix.com",
-          reply_to: form.email,
-        },
-        EMAILJS_PUBLIC_KEY
-      );
-
-      // Email 2: confirmación al cliente
+      // Email 1: confirmación al cliente
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_CLIENT,
@@ -77,6 +65,18 @@ export default function Contacto() {
           ...baseTemplateParams,
           to_email: form.email,
           reply_to: "pablomiglierini@dodilix.com",
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      // Email 2: notificación a Dodilix (lead interno)
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_COMPANY,
+        {
+          ...baseTemplateParams,
+          to_email: "pablomiglierini@dodilix.com",
+          reply_to: form.email,
         },
         EMAILJS_PUBLIC_KEY
       );
