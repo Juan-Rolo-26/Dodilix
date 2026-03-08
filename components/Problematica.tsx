@@ -237,7 +237,7 @@ export default function Problematica() {
                             color: "rgba(196, 181, 253, 0.85)",
                             fontSize: "clamp(18px, 1.7vw, 21px)",
                             lineHeight: 1.6,
-                            whiteSpace: "nowrap",
+                            overflowWrap: "anywhere",
                           }}>
                             {item}
                           </span>

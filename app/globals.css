@@ -55,6 +55,18 @@ body {
    ============================================= */
 
 @media (max-width: 1024px) {
+  section h1,
+  section h2,
+  section h3,
+  section p,
+  section span,
+  section a,
+  section button,
+  section li {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
   .grid-2col {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
@@ -113,6 +125,15 @@ body {
     padding-left: 18px !important;
     padding-right: 18px !important;
     white-space: normal !important;
+  }
+
+  /* Eliminar hueco entre "¿Qué es Dodilix?" y "Beneficios" en tablet/celular */
+  section#nosotros {
+    padding-bottom: 12px !important;
+  }
+
+  section#beneficios {
+    padding-top: 0 !important;
   }
 }
 
@@ -224,6 +245,14 @@ body {
     font-size: 18px !important;
   }
 
+  section#nosotros {
+    padding-bottom: 10px !important;
+  }
+
+  section#beneficios {
+    padding-top: 0 !important;
+  }
+
   /* ── Buttons: full width on mobile ── */
   .cta-card [style*="display: flex"][style*="gap: 16px"] {
     flex-direction: column !important;
@@ -256,6 +285,14 @@ body {
   /* ── Soluciones card internal padding ── */
   .sol-cards-grid > * > div {
     padding: 20px !important;
+  }
+
+  section#nosotros {
+    padding-bottom: 8px !important;
+  }
+
+  section#beneficios {
+    padding-top: 0 !important;
   }
 
 }
