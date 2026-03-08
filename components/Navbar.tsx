@@ -23,7 +23,7 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 100,
-        padding: "16px 0",
+        padding: "8px 0",
         transition: "all 0.3s ease",
         background: scrolled
           ? "rgba(6, 6, 18, 0.95)"
@@ -44,7 +44,7 @@ export default function Navbar() {
               src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-dodilix.png`}
               alt="Dodilix"
               style={{
-                height: "80px",
+                height: "44px",
                 width: "auto",
                 display: "block",
                 cursor: "pointer",
