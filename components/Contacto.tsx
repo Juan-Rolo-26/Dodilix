@@ -224,7 +224,7 @@ export default function Contacto() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} noValidate>
+              <form onSubmit={(e) => e.preventDefault()} noValidate>
                 {/* Grid 2 cols */}
                 <div style={{
                   display: "grid",
@@ -418,7 +418,8 @@ export default function Contacto() {
 
                 {/* Submit */}
                 <button
-                  type="submit"
+                  type="button"
+                  onClick={(e) => handleSubmit(e as any)}
                   disabled={loading}
                   style={{
                     width: "100%",
