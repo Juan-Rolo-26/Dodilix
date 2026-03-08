@@ -10,7 +10,7 @@ const countries = [
 ];
 
 const EMAILJS_SERVICE_ID =
-  process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_q6rbj52";
+  process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_xwum72j";
 const EMAILJS_TEMPLATE_COMPANY =
   process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_COMPANY || "template_mb2bmdr";
 const EMAILJS_TEMPLATE_CLIENT =

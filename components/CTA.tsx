@@ -2,8 +2,7 @@
 
 import AnimatedSection from "./AnimatedSection";
 
-const WA_NUMBER = "543518131093";
-const WA_URL = `https://wa.me/${WA_NUMBER}`;
+const WA_URL = "https://wa.me/5493513282580";
 
 export default function CTA() {
 
