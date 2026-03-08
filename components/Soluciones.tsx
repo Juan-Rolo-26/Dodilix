@@ -51,7 +51,7 @@ function CheckItem({ text }: { text: string }) {
 
 export default function Soluciones() {
   return (
-    <section id="soluciones" style={{
+    <section id="soluciones" className="soluciones-section" style={{
       padding: "100px 24px",
       position: "relative",
       overflow: "hidden",

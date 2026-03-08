@@ -12,7 +12,7 @@ const features = [
 
 export default function GestorOmnicanal() {
   return (
-    <section style={{
+    <section className="gestor-section" style={{
       padding: "100px 24px",
       position: "relative",
       overflow: "hidden",

@@ -55,7 +55,7 @@ export default function QueEsDodilix() {
         }}>
 
           {/* Left: title + text */}
-          <div>
+          <div className="quees-copy-col">
             <h2 style={{
               fontSize: "clamp(38px, 5vw, 64px)",
               fontWeight: 800,
@@ -89,7 +89,7 @@ export default function QueEsDodilix() {
             </h2>
 
             <AnimatedSection direction="left" delay={0.12}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+              <div className="quees-copy-text" style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 <p style={{
                   color: "rgba(196, 181, 253, 0.8)",
                   fontSize: "clamp(15px, 1.4vw, 17px)",
@@ -112,8 +112,8 @@ export default function QueEsDodilix() {
 
           {/* Right: robot animation + CTA */}
           <AnimatedSection direction="right" delay={0.15}>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "24px" }}>
-              <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+            <div className="quees-right-col" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "24px" }}>
+              <div className="quees-lottie-wrap" style={{ display: "flex", justifyContent: "center", width: "100%" }}>
                 {animationData ? (
                   <Lottie
                     animationData={animationData}
@@ -125,7 +125,7 @@ export default function QueEsDodilix() {
                 )}
               </div>
 
-              <div style={{
+              <div className="quees-cta-card" style={{
                 width: "100%",
                 background: "linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(236, 72, 153, 0.07))",
                 border: "1px solid rgba(124, 58, 237, 0.25)",
@@ -144,9 +144,10 @@ export default function QueEsDodilix() {
                 }}>
                   Coordinamos una demo personalizada sin compromiso.
                 </p>
-                <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+                <div className="quees-cta-actions" style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
                   <button
                     onClick={scrollToContact}
+                    className="quees-cta-btn"
                     style={{
                       background: "linear-gradient(135deg, #7c3aed, #6d28d9)",
                       color: "white",
@@ -174,6 +175,7 @@ export default function QueEsDodilix() {
                     href={WA_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="quees-cta-btn"
                     style={{
                       background: "transparent",
                       color: "white",

@@ -54,6 +54,68 @@ body {
    RESPONSIVE — MOBILE FIRST
    ============================================= */
 
+@media (max-width: 1024px) {
+  .grid-2col {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .grid-2col > *,
+  .sol-cards-grid > *,
+  .gestor-grid > * {
+    min-width: 0 !important;
+  }
+
+  .soluciones-section {
+    padding-bottom: 14px !important;
+  }
+
+  .gestor-section {
+    padding-top: 14px !important;
+  }
+
+  .quees-right-col {
+    gap: 14px !important;
+    align-items: stretch !important;
+  }
+
+  .quees-lottie-wrap {
+    order: 2;
+  }
+
+  .quees-cta-card {
+    order: 1;
+    padding: 22px 16px !important;
+    text-align: center;
+  }
+
+  .quees-cta-card h3 {
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 10px !important;
+    overflow-wrap: anywhere;
+  }
+
+  .quees-copy-text p,
+  .quees-cta-card p {
+    overflow-wrap: anywhere;
+  }
+
+  .quees-cta-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+  }
+
+  .quees-cta-btn {
+    width: 100% !important;
+    text-align: center !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+    white-space: normal !important;
+  }
+}
+
 @media (max-width: 768px) {
 
   /* ── Sections: reduce vertical padding ── */
@@ -69,10 +131,7 @@ body {
   }
 
   /* ── 2-column grids → 1 column ── */
-  .grid-2col {
-    grid-template-columns: 1fr !important;
-    gap: 36px !important;
-  }
+  .grid-2col { gap: 18px !important; }
 
   /* ── Problematica: carousel goes on top ── */
   .grid-2col .animated-section:first-child {
@@ -155,6 +214,14 @@ body {
   /* ── Horizontal scroll prevention ── */
   main, body {
     overflow-x: hidden !important;
+  }
+
+  .quees-copy-col h2 {
+    margin-bottom: 24px !important;
+  }
+
+  .quees-cta-card h3 {
+    font-size: 18px !important;
   }
 
   /* ── Buttons: full width on mobile ── */
