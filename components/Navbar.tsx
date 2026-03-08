@@ -23,7 +23,8 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 100,
-        padding: "8px 0",
+        height: "56px",
+        overflow: "visible",
         transition: "all 0.3s ease",
         background: scrolled
           ? "rgba(6, 6, 18, 0.95)"
@@ -32,7 +33,7 @@ export default function Navbar() {
         borderBottom: scrolled ? "1px solid rgba(124, 58, 237, 0.15)" : "none",
       }}
     >
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", height: "56px" }}>
         {/* Logo */}
         <div style={{ display: "flex", alignItems: "center" }}>
           <a
@@ -44,7 +45,7 @@ export default function Navbar() {
               src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-dodilix.png`}
               alt="Dodilix"
               style={{
-                height: "72px",
+                height: "130px",
                 width: "auto",
                 display: "block",
                 cursor: "pointer",
