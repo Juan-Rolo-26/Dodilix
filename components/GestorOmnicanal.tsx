@@ -40,7 +40,7 @@ export default function GestorOmnicanal() {
           alignItems: "center",
         }}>
           {/* Left: Content */}
-          <div>
+          <div className="gestor-content">
             <AnimatedSection delay={0.05}>
               <span style={{
                 display: "inline-flex",
@@ -131,6 +131,7 @@ export default function GestorOmnicanal() {
           </div>
 
           {/* Right: Visual chat mockup */}
+          <div className="gestor-chat">
           <AnimatedSection direction="right" delay={0.2}>
             <div style={{
               background: "rgba(13, 13, 43, 0.85)",
@@ -246,6 +247,7 @@ export default function GestorOmnicanal() {
               </div>
             </div>
           </AnimatedSection>
+          </div>
         </div>
       </div>
     </section>
