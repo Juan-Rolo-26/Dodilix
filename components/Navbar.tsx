@@ -23,7 +23,7 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 100,
-        height: "56px",
+        height: "72px",
         overflow: "visible",
         transition: "all 0.3s ease",
         background: scrolled
