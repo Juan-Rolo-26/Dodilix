@@ -35,8 +35,6 @@ export default function Problematica() {
 
   // Carousel state
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const [nextIndex, setNextIndex] = useState<number | null>(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Start the loop the first time the section enters the viewport
   useEffect(() => {
@@ -65,22 +63,13 @@ export default function Problematica() {
     return () => clearTimeout(displayTimer);
   }, [hasStarted, activeContent]);
 
-  // Carousel auto-advance: 5s per image with crossfade transition
+  // Carousel auto-advance: 5s per image with crossfade
   useEffect(() => {
     const interval = setInterval(() => {
-      const next = (carouselIndex + 1) % CAROUSEL_IMAGES.length;
-      setNextIndex(next);
-      setIsTransitioning(true);
-
-      setTimeout(() => {
-        setCarouselIndex(next);
-        setNextIndex(null);
-        setIsTransitioning(false);
-      }, 800);
+      setCarouselIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
     }, 5000);
-
     return () => clearInterval(interval);
-  }, [carouselIndex]);
+  }, []);
 
   return (
     <section
@@ -122,26 +111,11 @@ export default function Problematica() {
               aspectRatio: "4/5",
               boxShadow: "0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(124, 58, 237, 0.15)",
             }}>
-              {/* Current image */}
-              <img
-                src={`${basePath}/${CAROUSEL_IMAGES[carouselIndex]}`}
-                alt="Gestión de siniestros"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                  opacity: isTransitioning ? 0 : 1,
-                  transition: "opacity 0.8s ease-in-out",
-                }}
-              />
-              {/* Next image (fades in during transition) */}
-              {nextIndex !== null && (
+              {/* All images stacked — CSS crossfade via opacity */}
+              {CAROUSEL_IMAGES.map((img, i) => (
                 <img
-                  key={nextIndex}
-                  src={`${basePath}/${CAROUSEL_IMAGES[nextIndex]}`}
+                  key={img}
+                  src={`${basePath}/${img}`}
                   alt="Gestión de siniestros"
                   style={{
                     position: "absolute",
@@ -150,34 +124,12 @@ export default function Problematica() {
                     height: "100%",
                     objectFit: "cover",
                     display: "block",
-                    opacity: isTransitioning ? 1 : 0,
-                    transition: "opacity 0.8s ease-in-out",
+                    opacity: i === carouselIndex ? 1 : 0,
+                    transition: "opacity 1s ease-in-out",
+                    zIndex: i === carouselIndex ? 1 : 0,
                   }}
                 />
-              )}
-              {/* Dot indicators */}
-              <div style={{
-                position: "absolute",
-                bottom: "16px",
-                left: "50%",
-                transform: "translateX(-50%)",
-                display: "flex",
-                gap: "8px",
-                zIndex: 2,
-              }}>
-                {CAROUSEL_IMAGES.map((_, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      width: i === carouselIndex ? "20px" : "8px",
-                      height: "8px",
-                      borderRadius: "4px",
-                      background: i === carouselIndex ? "#a855f7" : "rgba(255,255,255,0.4)",
-                      transition: "all 0.4s ease",
-                    }}
-                  />
-                ))}
-              </div>
+              ))}
               {/* Subtle dark gradient overlay */}
               <div style={{
                 position: "absolute",

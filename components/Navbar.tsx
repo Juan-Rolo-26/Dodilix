@@ -44,7 +44,7 @@ export default function Navbar() {
               src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-dodilix.png`}
               alt="Dodilix"
               style={{
-                height: "52px",
+                height: "80px",
                 width: "auto",
                 display: "block",
                 cursor: "pointer",
