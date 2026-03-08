@@ -130,7 +130,7 @@ body {
 
   /* Eliminar hueco entre "¿Qué es Dodilix?" y "Beneficios" en tablet/celular */
   section#nosotros {
-    padding-bottom: 12px !important;
+    padding-bottom: 20px !important;
   }
 
   section#beneficios {
