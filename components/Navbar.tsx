@@ -40,15 +40,16 @@ export default function Navbar() {
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             style={{ textDecoration: "none" }}
           >
-            <span style={{
-              fontSize: "26px",
-              fontWeight: 700,
-              color: "white",
-              letterSpacing: "-0.5px",
-              cursor: "pointer",
-            }}>
-              Dodilix
-            </span>
+            <img
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-dodilix.png`}
+              alt="Dodilix"
+              style={{
+                height: "52px",
+                width: "auto",
+                display: "block",
+                cursor: "pointer",
+              }}
+            />
           </a>
         </div>
       </div>

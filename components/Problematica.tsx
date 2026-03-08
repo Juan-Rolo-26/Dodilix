@@ -15,8 +15,16 @@ const bulletItems = [
   "Dificultad para escalar operaciones sin aumentar costos",
 ];
 
+const CAROUSEL_IMAGES = [
+  "carousel-1.avif",
+  "carousel-2.avif",
+  "carousel-3.avif",
+  "carousel-4.jpg",
+  "carousel-5.jpg",
+];
+
 export default function Problematica() {
-  const problematicaImageSrc = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/problematica-nueva.jpg`;
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const sectionInView = useInView(sectionRef, { once: true, margin: "-120px" });
@@ -24,6 +32,11 @@ export default function Problematica() {
   const [hasStarted, setHasStarted] = useState(false);
   const [activeContent, setActiveContent] = useState<"paragraph" | "bullets">(PARAGRAPH);
   const [contentOpacity, setContentOpacity] = useState(1);
+
+  // Carousel state
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [nextIndex, setNextIndex] = useState<number | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Start the loop the first time the section enters the viewport
   useEffect(() => {
@@ -51,6 +64,23 @@ export default function Problematica() {
 
     return () => clearTimeout(displayTimer);
   }, [hasStarted, activeContent]);
+
+  // Carousel auto-advance: 5s per image with crossfade transition
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const next = (carouselIndex + 1) % CAROUSEL_IMAGES.length;
+      setNextIndex(next);
+      setIsTransitioning(true);
+
+      setTimeout(() => {
+        setCarouselIndex(next);
+        setNextIndex(null);
+        setIsTransitioning(false);
+      }, 800);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [carouselIndex]);
 
   return (
     <section
@@ -83,7 +113,7 @@ export default function Problematica() {
           alignItems: "center",
         }}>
 
-          {/* Left: image */}
+          {/* Left: carousel */}
           <AnimatedSection direction="left" delay={0.05}>
             <div style={{
               borderRadius: "20px",
@@ -92,26 +122,69 @@ export default function Problematica() {
               aspectRatio: "4/5",
               boxShadow: "0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(124, 58, 237, 0.15)",
             }}>
-              <motion.img
-                src={problematicaImageSrc}
-                alt="Equipo de trabajo"
-                initial={{ opacity: 0, scale: 1.04 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 1.0, ease: "easeOut" }}
+              {/* Current image */}
+              <img
+                src={`${basePath}/${CAROUSEL_IMAGES[carouselIndex]}`}
+                alt="Gestión de siniestros"
                 style={{
+                  position: "absolute",
+                  inset: 0,
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
                   display: "block",
+                  opacity: isTransitioning ? 0 : 1,
+                  transition: "opacity 0.8s ease-in-out",
                 }}
               />
-              {/* Subtle dark gradient overlay on the image */}
+              {/* Next image (fades in during transition) */}
+              {nextIndex !== null && (
+                <img
+                  key={nextIndex}
+                  src={`${basePath}/${CAROUSEL_IMAGES[nextIndex]}`}
+                  alt="Gestión de siniestros"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                    opacity: isTransitioning ? 1 : 0,
+                    transition: "opacity 0.8s ease-in-out",
+                  }}
+                />
+              )}
+              {/* Dot indicators */}
+              <div style={{
+                position: "absolute",
+                bottom: "16px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                display: "flex",
+                gap: "8px",
+                zIndex: 2,
+              }}>
+                {CAROUSEL_IMAGES.map((_, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      width: i === carouselIndex ? "20px" : "8px",
+                      height: "8px",
+                      borderRadius: "4px",
+                      background: i === carouselIndex ? "#a855f7" : "rgba(255,255,255,0.4)",
+                      transition: "all 0.4s ease",
+                    }}
+                  />
+                ))}
+              </div>
+              {/* Subtle dark gradient overlay */}
               <div style={{
                 position: "absolute",
                 inset: 0,
-                background: "linear-gradient(180deg, transparent 50%, rgba(6,6,18,0.4) 100%)",
+                background: "linear-gradient(180deg, transparent 50%, rgba(6,6,18,0.5) 100%)",
                 pointerEvents: "none",
+                zIndex: 1,
               }} />
             </div>
           </AnimatedSection>
