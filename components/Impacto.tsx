@@ -79,7 +79,7 @@ const impactItems = [
 
 export default function Impacto() {
   return (
-    <section style={{
+    <section id="beneficios" style={{
       padding: "0 24px 100px",
       position: "relative",
       overflow: "hidden",

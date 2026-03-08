@@ -24,7 +24,7 @@ export default function QueEsDodilix() {
   };
 
   return (
-    <section style={{
+    <section id="nosotros" style={{
       padding: "100px 24px",
       position: "relative",
       overflow: "hidden",

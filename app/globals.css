@@ -50,6 +50,15 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* Navbar responsive */
+.nav-desktop-links { display: flex !important; }
+.nav-mobile-toggle  { display: none !important; }
+
+@media (max-width: 768px) {
+  .nav-desktop-links { display: none !important; }
+  .nav-mobile-toggle  { display: block !important; }
+}
+
 .arquitectura-title-main {
   color: #ffffff;
   display: inline-flex !important;
