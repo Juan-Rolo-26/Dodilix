@@ -37,7 +37,7 @@ export default function Navbar() {
 
   /* scroll listener */
   useEffect(() => {
-    const handle = () => setScrolled(window.scrollY > 20);
+    const handle = () => setScrolled(window.scrollY > 5);
     window.addEventListener("scroll", handle);
     return () => window.removeEventListener("scroll", handle);
   }, []);
@@ -229,10 +229,11 @@ export default function Navbar() {
               display: "flex",
               alignItems: "center",
               gap: "2px",
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              background: scrolled ? "transparent" : "rgba(255,255,255,0.05)",
+              border: scrolled ? "1px solid transparent" : "1px solid rgba(255,255,255,0.1)",
               borderRadius: "100px",
               padding: "5px",
+              transition: "background 0.3s ease, border-color 0.3s ease",
             }}
           >
             {NAV_ITEMS.map((item, i) => (
