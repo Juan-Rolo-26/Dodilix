@@ -133,8 +133,8 @@ export default function Footer() {
               }}>
                 Contacto
               </p>
-              <a
-                href={`mailto:info@dodilix.com`}
+              <button
+                onClick={() => scrollTo("contacto")}
                 style={{
                   ...linkStyle,
                   display: "block",
@@ -143,8 +143,17 @@ export default function Footer() {
                 onMouseEnter={(e) => { e.currentTarget.style.color = "white"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(196, 181, 253, 0.65)"; }}
               >
+                Formulario de contacto
+              </button>
+              <span
+                style={{
+                  ...linkStyle,
+                  display: "block",
+                  cursor: "default",
+                }}
+              >
                 info@dodilix.com
-              </a>
+              </span>
               <a
                 href={WA_URL}
                 target="_blank"
