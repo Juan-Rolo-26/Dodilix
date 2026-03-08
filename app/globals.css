@@ -93,6 +93,7 @@ body {
 
   .quees-lottie-wrap {
     order: 2;
+    display: none !important;
   }
 
   .quees-cta-card {
