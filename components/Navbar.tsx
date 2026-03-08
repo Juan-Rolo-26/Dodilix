@@ -33,7 +33,7 @@ export default function Navbar() {
         borderBottom: scrolled ? "1px solid rgba(124, 58, 237, 0.15)" : "none",
       }}
     >
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", height: "56px" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", height: "72px" }}>
         {/* Logo */}
         <div style={{ display: "flex", alignItems: "center" }}>
           <a
