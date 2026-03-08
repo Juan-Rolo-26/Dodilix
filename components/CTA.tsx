@@ -34,7 +34,7 @@ export default function CTA() {
 
       <div style={{ maxWidth: "900px", margin: "0 auto" }}>
         <AnimatedSection>
-          <div style={{
+          <div className="cta-card" style={{
             background: "linear-gradient(135deg, rgba(13, 13, 43, 0.9), rgba(10, 5, 30, 0.95))",
             border: "1px solid rgba(124, 58, 237, 0.25)",
             borderRadius: "28px",

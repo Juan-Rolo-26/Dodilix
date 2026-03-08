@@ -169,7 +169,7 @@ export default function Contacto() {
 
         {/* Form Card */}
         <AnimatedSection delay={0.2}>
-          <div style={{
+          <div className="contacto-card" style={{
             background: "#ffffff",
             border: "1.5px solid #d1d5db",
             borderRadius: "24px",

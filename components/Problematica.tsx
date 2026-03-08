@@ -95,7 +95,7 @@ export default function Problematica() {
       }} />
 
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <div style={{
+        <div className="grid-2col" style={{
           display: "grid",
           gridTemplateColumns: "0.82fr 1.18fr",
           gap: "48px",

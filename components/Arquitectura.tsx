@@ -157,7 +157,7 @@ export default function Arquitectura() {
         </div>
 
         {/* Venn-style visual + pillars */}
-        <div style={{
+        <div className="grid-2col" style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "60px",

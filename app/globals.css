@@ -50,7 +50,124 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* Navbar responsive */
+/* =============================================
+   RESPONSIVE — MOBILE FIRST
+   ============================================= */
+
+@media (max-width: 768px) {
+
+  /* ── Sections: reduce vertical padding ── */
+  section {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+  }
+
+  /* ── Hero ── */
+  section:first-of-type {
+    padding-top: 110px !important;
+    padding-bottom: 64px !important;
+  }
+
+  /* ── 2-column grids → 1 column ── */
+  .grid-2col {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+
+  /* ── Problematica: carousel goes on top ── */
+  .grid-2col .animated-section:first-child {
+    order: -1;
+  }
+
+  /* ── Soluciones cards: min-width too large ── */
+  .sol-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* ── GestorOmnicanal: reduce gap ── */
+  .gestor-grid {
+    gap: 32px !important;
+  }
+
+  /* ── Impacto cards: force 1 col on very small screens ── */
+  @media (max-width: 480px) {
+    section[id="beneficios"] .grid-items {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* ── CTA card: reduce padding ── */
+  .cta-card {
+    padding: 36px 20px !important;
+    border-radius: 20px !important;
+  }
+
+  /* ── Contacto form card ── */
+  .contacto-card {
+    padding: 28px 20px !important;
+    border-radius: 16px !important;
+  }
+
+  /* ── Arquitectura Venn: scale SVG down ── */
+  .grid-2col svg[viewBox="0 0 360 340"] {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 300px;
+  }
+
+  /* ── Footer ── */
+  footer {
+    padding: 40px 20px 28px !important;
+  }
+
+  /* ── Navbar hero offset ── */
+  main > section:first-child {
+    padding-top: 110px !important;
+  }
+
+  /* ── Horizontal scroll prevention ── */
+  main, body {
+    overflow-x: hidden !important;
+  }
+
+  /* ── Buttons: full width on mobile ── */
+  .cta-card [style*="display: flex"][style*="gap: 16px"] {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  section {
+    padding-top: 52px !important;
+    padding-bottom: 52px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  main > section:first-child {
+    padding-top: 100px !important;
+  }
+
+  .cta-card {
+    padding: 28px 16px !important;
+  }
+
+  .contacto-card {
+    padding: 20px 14px !important;
+  }
+
+  /* ── Soluciones card internal padding ── */
+  .sol-cards-grid > * > div {
+    padding: 20px !important;
+  }
+
+}
+
+/* ── Navbar responsive */
 .nav-desktop-links { display: flex !important; }
 .nav-mobile-toggle  { display: none !important; }
 

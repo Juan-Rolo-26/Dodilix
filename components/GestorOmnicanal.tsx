@@ -33,7 +33,7 @@ export default function GestorOmnicanal() {
       }} />
 
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <div style={{
+        <div className="gestor-grid" style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
           gap: "60px",

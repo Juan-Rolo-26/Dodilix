@@ -135,7 +135,7 @@ export default function Soluciones() {
         </div>
 
         {/* Two-column layout */}
-        <div style={{
+        <div className="sol-cards-grid" style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(440px, 1fr))",
           gap: "28px",

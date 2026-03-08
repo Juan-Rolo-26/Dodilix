@@ -46,7 +46,7 @@ export default function QueEsDodilix() {
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
         {/* Two-column layout */}
-        <div style={{
+        <div className="grid-2col" style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "64px",
