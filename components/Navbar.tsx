@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 
 const NAV_ITEMS = [
-  { label: "Nosotros",    id: "nosotros"   },
-  { label: "Soluciones",  id: "beneficios" },
-  { label: "Servicios",   id: "soluciones" },
-  { label: "Contáctanos", id: "contacto"   },
+  { label: "Nosotros",           id: "nosotros"              },
+  { label: "Nuestras soluciones", id: "soluciones"            },
+  { label: "Servicios",          id: "tecnologia-seguridad"  },
+  { label: "Contáctanos",        id: "contacto"              },
 ];
 
 function scrollToSection(id: string) {
