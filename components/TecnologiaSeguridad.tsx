@@ -71,7 +71,7 @@ const security = [
 
 export default function TecnologiaSeguridad() {
   return (
-    <section style={{
+    <section id="tecnologia-seguridad" style={{
       padding: "100px 24px",
       position: "relative",
       overflow: "hidden",
