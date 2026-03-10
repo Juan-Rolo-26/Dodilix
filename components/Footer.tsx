@@ -26,7 +26,7 @@ export default function Footer() {
     <footer style={{
       background: "#060612",
       borderTop: "1px solid rgba(124, 58, 237, 0.15)",
-      padding: "10px 24px 16px",
+      padding: "0px 24px 6px",
     }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
