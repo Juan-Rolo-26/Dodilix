@@ -37,12 +37,12 @@ export default function Footer() {
           alignItems: "flex-start",
           flexWrap: "wrap",
           gap: "48px",
-          marginBottom: "8px",
+          marginBottom: "2px",
         }}>
 
           {/* Brand */}
           <div style={{ maxWidth: "300px" }}>
-            <div style={{ marginBottom: "-30px", marginTop: "-20px" }}>
+            <div style={{ marginBottom: "-55px", marginTop: "-20px" }}>
               <img
                 src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-dodilix.png`}
                 alt="Dodilix"
