@@ -42,11 +42,11 @@ export default function Footer() {
 
           {/* Brand */}
           <div style={{ maxWidth: "300px" }}>
-            <div style={{ marginBottom: "6px" }}>
+            <div style={{ marginBottom: "6px", marginTop: "-10px" }}>
               <img
                 src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-dodilix.png`}
                 alt="Dodilix"
-                style={{ height: "120px", width: "auto", display: "block" }}
+                style={{ height: "160px", width: "auto", display: "block" }}
               />
             </div>
             <p style={{
@@ -92,7 +92,7 @@ export default function Footer() {
           </div>
 
           {/* Nav columns */}
-          <div style={{ display: "flex", gap: "64px", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "64px", flexWrap: "wrap", paddingTop: "40px" }}>
             <div>
               <p style={{
                 color: "rgba(196, 181, 253, 0.38)",
