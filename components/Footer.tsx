@@ -26,7 +26,7 @@ export default function Footer() {
     <footer style={{
       background: "#060612",
       borderTop: "1px solid rgba(124, 58, 237, 0.15)",
-      padding: "56px 24px 32px",
+      padding: "20px 24px 24px",
     }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
@@ -37,16 +37,16 @@ export default function Footer() {
           alignItems: "flex-start",
           flexWrap: "wrap",
           gap: "48px",
-          marginBottom: "48px",
+          marginBottom: "20px",
         }}>
 
           {/* Brand */}
           <div style={{ maxWidth: "300px" }}>
-            <div style={{ marginBottom: "14px" }}>
+            <div style={{ marginBottom: "6px" }}>
               <img
                 src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-dodilix.png`}
                 alt="Dodilix"
-                style={{ height: "110px", width: "auto", display: "block" }}
+                style={{ height: "120px", width: "auto", display: "block" }}
               />
             </div>
             <p style={{
