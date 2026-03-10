@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 
 const WA_NUMBER = "5493513282580";
 const WA_URL = `https://wa.me/${WA_NUMBER}`;
@@ -44,12 +43,10 @@ export default function Footer() {
           {/* Brand */}
           <div style={{ maxWidth: "300px" }}>
             <div style={{ marginBottom: "14px" }}>
-              <Image
+              <img
                 src="/logo-dodilix-oficial.png"
                 alt="Dodilix"
-                width={160}
-                height={64}
-                style={{ objectFit: "contain", objectPosition: "left" }}
+                style={{ height: "110px", width: "auto", display: "block" }}
               />
             </div>
             <p style={{
