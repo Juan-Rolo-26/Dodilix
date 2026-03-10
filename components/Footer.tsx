@@ -44,7 +44,7 @@ export default function Footer() {
           <div style={{ maxWidth: "300px" }}>
             <div style={{ marginBottom: "14px" }}>
               <img
-                src="/logo-dodilix-oficial.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-dodilix.png`}
                 alt="Dodilix"
                 style={{ height: "110px", width: "auto", display: "block" }}
               />
