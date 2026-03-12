@@ -9,10 +9,17 @@ const countries = [
   "Paraguay", "Ecuador", "Venezuela", "Brasil", "España", "Otro",
 ];
 
-const EMAILJS_SERVICE_ID = "service_xwum72j";
-const EMAILJS_TEMPLATE_COMPANY = "ujugd8q";
-const EMAILJS_TEMPLATE_CLIENT = "yff3wtb";
-const EMAILJS_PUBLIC_KEY = "XXft8T6Gj5z4JhQIO";
+const normalizeTemplateId = (value: string) =>
+  value.startsWith("template_") ? value : `template_${value}`;
+
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_xwum72j";
+const EMAILJS_TEMPLATE_COMPANY = normalizeTemplateId(
+  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_COMPANY || "ujugd8q"
+);
+const EMAILJS_TEMPLATE_CLIENT = normalizeTemplateId(
+  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_CLIENT || "yff3wtb"
+);
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "XXft8T6Gj5z4JhQIO";
 
 export default function Contacto() {
   const [form, setForm] = useState({
@@ -81,6 +88,7 @@ export default function Contacto() {
       ]);
 
       if (clientResult.status === "rejected") {
+        console.error("Error enviando mail de confirmacion al cliente:", clientResult.reason);
         setError("No se pudo enviar el formulario. Revisá tu conexión e intentá de nuevo.");
         return;
       }
