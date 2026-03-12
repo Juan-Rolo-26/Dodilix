@@ -11,7 +11,7 @@ const countries = [
 
 const EMAILJS_SERVICE_ID = "service_xwum72j";
 const EMAILJS_TEMPLATE_COMPANY = "ujugd8q";
-const EMAILJS_TEMPLATE_CLIENT = "template_5d24apk";
+const EMAILJS_TEMPLATE_CLIENT = "yff3wtb";
 const EMAILJS_PUBLIC_KEY = "XXft8T6Gj5z4JhQIO";
 
 export default function Contacto() {
@@ -57,29 +57,37 @@ export default function Contacto() {
         fecha,
       };
 
-      // Email 1: confirmación al cliente
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_CLIENT,
-        {
-          ...baseTemplateParams,
-          to_email: form.email,
-          reply_to: "pablomiglierini@dodilix.com",
-        },
-        EMAILJS_PUBLIC_KEY
-      );
+      const [clientResult, ownerResult] = await Promise.allSettled([
+        emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_CLIENT,
+          {
+            ...baseTemplateParams,
+            to_email: form.email,
+            reply_to: "pablomiglierini@dodilix.com",
+          },
+          EMAILJS_PUBLIC_KEY
+        ),
+        emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_COMPANY,
+          {
+            ...baseTemplateParams,
+            to_email: "pablomiglierini@dodilix.com",
+            reply_to: form.email,
+          },
+          EMAILJS_PUBLIC_KEY
+        ),
+      ]);
 
-      // Email 2: notificación a Dodilix (lead interno)
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_COMPANY,
-        {
-          ...baseTemplateParams,
-          to_email: "pablomiglierini@dodilix.com",
-          reply_to: form.email,
-        },
-        EMAILJS_PUBLIC_KEY
-      );
+      if (clientResult.status === "rejected") {
+        setError("No se pudo enviar el formulario. Revisá tu conexión e intentá de nuevo.");
+        return;
+      }
+
+      if (ownerResult.status === "rejected") {
+        console.error("Error enviando mail interno a owner:", ownerResult.reason);
+      }
 
       setSuccess(true);
       setForm({ nombre: "", empresa: "", email: "", pais: "", comentario: "" });
@@ -220,7 +228,7 @@ export default function Contacto() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={(e) => e.preventDefault()} noValidate>
+              <form onSubmit={handleSubmit} noValidate>
                 {/* Grid 2 cols */}
                 <div style={{
                   display: "grid",
@@ -414,8 +422,7 @@ export default function Contacto() {
 
                 {/* Submit */}
                 <button
-                  type="button"
-                  onClick={(e) => handleSubmit(e as any)}
+                  type="submit"
                   disabled={loading}
                   style={{
                     width: "100%",
