@@ -18,8 +18,8 @@ const getTemplateCandidates = (value: string) => {
 };
 
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_xwum72j";
-const EMAILJS_TEMPLATE_COMPANY = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_COMPANY || "ujugd8q";
-const EMAILJS_TEMPLATE_CLIENT = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_CLIENT || "yff3wtb";
+const EMAILJS_TEMPLATE_COMPANY = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_COMPANY || "template_mb2bmdr";
+const EMAILJS_TEMPLATE_CLIENT = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_CLIENT || "template_5d24apk";
 const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "XXft8T6Gj5z4JhQIO";
 
 export default function Contacto() {
