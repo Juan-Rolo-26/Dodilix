@@ -9,16 +9,17 @@ const countries = [
   "Paraguay", "Ecuador", "Venezuela", "Brasil", "España", "Otro",
 ];
 
-const normalizeTemplateId = (value: string) =>
-  value.startsWith("template_") ? value : `template_${value}`;
+const getTemplateCandidates = (value: string) => {
+  const trimmed = value.trim();
+  if (!trimmed) return [];
+  const withPrefix = trimmed.startsWith("template_") ? trimmed : `template_${trimmed}`;
+  const withoutPrefix = trimmed.replace(/^template_/, "");
+  return Array.from(new Set([trimmed, withPrefix, withoutPrefix]));
+};
 
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_xwum72j";
-const EMAILJS_TEMPLATE_COMPANY = normalizeTemplateId(
-  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_COMPANY || "ujugd8q"
-);
-const EMAILJS_TEMPLATE_CLIENT = normalizeTemplateId(
-  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_CLIENT || "yff3wtb"
-);
+const EMAILJS_TEMPLATE_COMPANY = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_COMPANY || "ujugd8q";
+const EMAILJS_TEMPLATE_CLIENT = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_CLIENT || "yff3wtb";
 const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "XXft8T6Gj5z4JhQIO";
 
 export default function Contacto() {
@@ -36,6 +37,42 @@ export default function Contacto() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     if (error) setError("");
+  };
+
+  const sendWithTemplateFallback = async (
+    templateId: string,
+    params: Record<string, string>
+  ) => {
+    const candidates = getTemplateCandidates(templateId);
+    let lastError: unknown;
+
+    for (const candidate of candidates) {
+      try {
+        return await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          candidate,
+          params,
+          EMAILJS_PUBLIC_KEY
+        );
+      } catch (error) {
+        lastError = error;
+        const errorText =
+          typeof error === "object" &&
+          error !== null &&
+          "text" in error &&
+          typeof (error as { text?: unknown }).text === "string"
+            ? (error as { text: string }).text
+            : "";
+
+        // If the template is invalid, try next candidate. Otherwise fail fast.
+        if (!errorText.includes("template ID not found")) {
+          throw error;
+        }
+      }
+    }
+
+    console.error("Template ID inválido. Candidatos probados:", candidates);
+    throw lastError;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -65,25 +102,21 @@ export default function Contacto() {
       };
 
       const [clientResult, ownerResult] = await Promise.allSettled([
-        emailjs.send(
-          EMAILJS_SERVICE_ID,
+        sendWithTemplateFallback(
           EMAILJS_TEMPLATE_CLIENT,
           {
             ...baseTemplateParams,
             to_email: form.email,
             reply_to: "pablomiglierini@dodilix.com",
-          },
-          EMAILJS_PUBLIC_KEY
+          }
         ),
-        emailjs.send(
-          EMAILJS_SERVICE_ID,
+        sendWithTemplateFallback(
           EMAILJS_TEMPLATE_COMPANY,
           {
             ...baseTemplateParams,
             to_email: "pablomiglierini@dodilix.com",
             reply_to: form.email,
-          },
-          EMAILJS_PUBLIC_KEY
+          }
         ),
       ]);
 
